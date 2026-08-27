@@ -9,6 +9,18 @@
   const esc = (s) =>
     String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 
+  /* 카드 미디어(사진) — 파일이 있으면 사진, 없으면 그라데이션+아이콘 플레이스홀더 */
+  function mediaHTML(item, alt, wide) {
+    const accent = item.accent || "pos";
+    const glyph = item.glyph || "✦";
+    const img = item.img
+      ? `<img class="card-media__img" src="${esc(item.img)}" alt="${esc(alt)}" loading="lazy" data-fallback />`
+      : "";
+    return `<div class="card-media${wide ? " card-media--wide" : ""}" data-accent="${esc(accent)}">
+        ${img}<span class="card-media__glyph" aria-hidden="true">${esc(glyph)}</span>
+      </div>`;
+  }
+
   /* ---------- Render: Projects timeline ---------- */
   function renderProjects() {
     const wrap = $("#timeline");
@@ -23,16 +35,19 @@
               .join("")}</div>`
           : "";
         return `
-        <article class="timeline__item reveal" data-reveal data-reveal-delay="${i % 3}">
-          <div class="timeline__top">
-            <span class="timeline__period">${esc(p.period)}</span>
-            <span class="timeline__badge">${esc(p.badge)}</span>
+        <article class="timeline__item has-media reveal" data-reveal data-reveal-delay="${i % 3}">
+          <div class="timeline__body">
+            <div class="timeline__top">
+              <span class="timeline__period">${esc(p.period)}</span>
+              <span class="timeline__badge">${esc(p.badge)}</span>
+            </div>
+            <h3 class="timeline__title">${esc(p.title)}</h3>
+            <p class="timeline__role">${esc(p.role)}</p>
+            <ul class="timeline__points">${points}</ul>
+            <div class="timeline__tags">${tags}</div>
+            ${links}
           </div>
-          <h3 class="timeline__title">${esc(p.title)}</h3>
-          <p class="timeline__role">${esc(p.role)}</p>
-          <ul class="timeline__points">${points}</ul>
-          <div class="timeline__tags">${tags}</div>
-          ${links}
+          ${mediaHTML(p, p.title)}
         </article>`;
       })
       .join("");
@@ -49,10 +64,13 @@
         const award = p.award ? `<span class="ai-card__award">${esc(p.award)}</span>` : "";
         return `
         <article class="ai-card reveal" data-reveal data-reveal-delay="${i}">
-          <div><span class="ai-card__period">${esc(p.period)}</span>${award}</div>
-          <h3 class="ai-card__title">${esc(p.title)}</h3>
-          <ul class="ai-card__points">${points}</ul>
-          <div class="timeline__tags">${tags}</div>
+          ${mediaHTML(p, p.title, true)}
+          <div class="ai-card__body">
+            <div><span class="ai-card__period">${esc(p.period)}</span>${award}</div>
+            <h3 class="ai-card__title">${esc(p.title)}</h3>
+            <ul class="ai-card__points">${points}</ul>
+            <div class="timeline__tags">${tags}</div>
+          </div>
         </article>`;
       })
       .join("");
@@ -93,7 +111,6 @@
           <h3 class="cert-card__name">${esc(c.name)}</h3>
           <div class="cert-card__dates">
             <span>취득 <b>${esc(c.issued)}</b></span>
-            <span>유효 <b>${esc(c.valid)}</b></span>
           </div>
         </div>`
       )
@@ -224,6 +241,28 @@
     }
   }
 
+  /* ---------- Hero portrait ---------- */
+  function initHeroPhoto() {
+    const img = $("#heroPhoto");
+    if (!img) return;
+    const src = window.PROFILE && PROFILE.profilePhoto;
+    if (!src) return;
+    img.addEventListener("load", () => img.classList.add("is-loaded"));
+    img.addEventListener("error", () => img.classList.remove("is-loaded"));
+    img.src = src;
+  }
+
+  /* ---------- Image fallback: 로딩 성공 시에만 표시(실패하면 플레이스홀더 유지) ---------- */
+  function initImageFallback() {
+    $$("img[data-fallback]").forEach((img) => {
+      const reveal = () => img.classList.add("is-loaded");
+      const hide = () => img.classList.remove("is-loaded");
+      if (img.complete && img.naturalWidth > 0) reveal();
+      img.addEventListener("load", reveal);
+      img.addEventListener("error", hide);
+    });
+  }
+
   /* ---------- Cursor glow (pointer only) ---------- */
   function initGlow() {
     const glow = $("#cursorGlow");
@@ -246,6 +285,8 @@
     renderSkills();
     renderCerts();
     renderActivities();
+    initHeroPhoto();
+    initImageFallback();
     initReveal();
     initCounters();
     initNav();

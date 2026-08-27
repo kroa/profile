@@ -99,6 +99,31 @@ function ok(cond, msg) {
   ok(acts.length === window.PROFILE.activities.length && acts.length === 5,
     `세미나/활동 ${acts.length}건 렌더링 (기대: 5)`);
 
+  console.log("\n[사진 슬롯]");
+  ok(!!doc.querySelector("#heroPhoto"), "히어로 프로필 사진 요소 존재");
+  const projMedia = doc.querySelectorAll("#timeline .timeline__item .card-media");
+  ok(projMedia.length === 8, `프로젝트 사진 슬롯 ${projMedia.length}개 (기대: 8)`);
+  const projImgs = doc.querySelectorAll("#timeline .card-media img[data-fallback]");
+  ok(projImgs.length === 8, `프로젝트 이미지 태그 ${projImgs.length}개 (기대: 8)`);
+  const aiMedia = doc.querySelectorAll("#ai-grid .ai-card .card-media");
+  ok(aiMedia.length === 2, `AI 프로젝트 사진 슬롯 ${aiMedia.length}개 (기대: 2)`);
+  ok(Array.from(projImgs).every((im) => (im.getAttribute("src") || "").startsWith("assets/img/")),
+    "프로젝트 이미지 경로가 assets/img/ 로 지정됨");
+
+  console.log("\n[자격증 · 유효기간 제외]");
+  const certsText = doc.querySelector("#certs-grid").textContent;
+  ok(!certsText.includes("유효"), "자격증에 '유효'(유효기간) 미표시");
+  ok(certsText.includes("취득"), "자격증 취득일은 표시됨");
+
+  console.log("\n[홍보 영상 순서 · URL]");
+  const videoLinks = Array.from(doc.querySelectorAll(".awards__list--links a"));
+  ok(videoLinks.length === 2, "홍보 영상 링크 2개");
+  ok(/duj8Ejku9gQ/.test(videoLinks[0].getAttribute("href")) && videoLinks[0].textContent.includes("MS"),
+    "첫 번째 = MS 협업 영상(duj8Ejku9gQ)로 교체·순서 변경");
+  ok(/R0P6jXCw4ic/.test(videoLinks[1].getAttribute("href")),
+    "두 번째 = 소프트웨어 개발 직무 소개 영상");
+  ok(!/c317VLcHiHk/.test(html), "기존 MS 영상 URL(c317VLcHiHk) 완전 제거");
+
   console.log("\n[핵심 콘텐츠 반영]");
   const body = doc.body.textContent;
   ok(body.includes("SecuDog"), "AI League 프로젝트(SecuDog) 노출");

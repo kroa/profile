@@ -1,9 +1,15 @@
 /* =====================================================================
    Profile content data
    개인정보(전화/주소 등)는 포함하지 않습니다. 공개 가능한 정보만 사용.
+
+   [이미지] assets/img/ 폴더에 아래 파일명으로 넣으면 자동 표시됩니다.
+   파일이 없으면 우아한 플레이스홀더(그라데이션 + 아이콘)로 대체됩니다.
    ===================================================================== */
 
 const PROFILE = {
+  /* 프로필 사진 — assets/img/profile.jpg */
+  profilePhoto: "assets/img/profile.jpg",
+
   /* ---------- 주요 프로젝트 (최신순) ---------- */
   projects: [
     {
@@ -22,6 +28,8 @@ const PROFILE = {
       tags: ["AWS", "EKS", "Aurora MySQL", "Redshift", "Datadog", "Hybrid Cloud"],
       links: [],
       accent: "cloud",
+      glyph: "☁️",
+      img: "assets/img/proj-aws-architecture.jpg",
     },
     {
       period: "2021.03 – 2021.11",
@@ -36,6 +44,8 @@ const PROFILE = {
       tags: ["PI/ISP", "아키텍처 진단", "컨설팅"],
       links: [],
       accent: "plan",
+      glyph: "🧭",
+      img: "assets/img/proj-piisp.jpg",
     },
     {
       period: "2020.07 – 2021.02",
@@ -51,6 +61,8 @@ const PROFILE = {
       tags: ["TFS", "CI/CD", "C#", "WPF", "Xamarin"],
       links: [],
       accent: "devops",
+      glyph: "🔧",
+      img: "assets/img/proj-devops.jpg",
     },
     {
       period: "2019.09 – 2020.01",
@@ -65,6 +77,8 @@ const PROFILE = {
       tags: ["KIOSK", "O2O", "UX/UI"],
       links: [],
       accent: "kiosk",
+      glyph: "📦",
+      img: "assets/img/proj-ssg-pixel.jpg",
     },
     {
       period: "2018.10 – 2019.04",
@@ -79,6 +93,8 @@ const PROFILE = {
       tags: ["Self-Checkout", "C#", "WPF", "UX/UI"],
       links: [],
       accent: "kiosk",
+      glyph: "🛒",
+      img: "assets/img/proj-sco.jpg",
     },
     {
       period: "2018.04 – 2019.04",
@@ -93,6 +109,8 @@ const PROFILE = {
       tags: ["POS", "ATM", "C#", "WPF"],
       links: [],
       accent: "pos",
+      glyph: "🏧",
+      img: "assets/img/proj-cashterminal.jpg",
     },
     {
       period: "2017.08 – 2018.06",
@@ -110,6 +128,8 @@ const PROFILE = {
         { label: "ZDNet 기사", url: "https://www.zdnet.co.kr/view/?no=20180702085141" },
       ],
       accent: "pos",
+      glyph: "📱",
+      img: "assets/img/proj-mobile-pos.jpg",
     },
     {
       period: "2014.11 – 2016.02",
@@ -127,6 +147,8 @@ const PROFILE = {
         { label: "Microsoft 협업 영상", url: "https://www.youtube.com/watch?v=duj8Ejku9gQ" },
       ],
       accent: "pos",
+      glyph: "🧾",
+      img: "assets/img/proj-tablet-pos.jpg",
     },
   ],
 
@@ -143,6 +165,9 @@ const PROFILE = {
         "폐쇄망(VDI)에서 사용 가능",
       ],
       tags: ["C#", "WPF", "AI", "보안"],
+      accent: "ai",
+      glyph: "🐕",
+      img: "assets/img/ai-secudog.jpg",
     },
     {
       period: "2026.02 – 2026.03",
@@ -154,6 +179,9 @@ const PROFILE = {
         "Jira 미종료 작업 · GitLab 머지 요청 · 당일 회의 안내",
       ],
       tags: ["n8n", "MCP", "Automation", "AI"],
+      accent: "ai",
+      glyph: "🤖",
+      img: "assets/img/ai-n8n.jpg",
     },
   ],
 
@@ -202,31 +230,27 @@ const PROFILE = {
     },
   ],
 
-  /* ---------- 자격증 ---------- */
+  /* ---------- 자격증 (유효기간 미표시) ---------- */
   certs: [
     {
       name: "AWS Advanced Networking – Specialty",
       grade: "Specialty",
       issued: "2024.12.26",
-      valid: "2027.12.26",
     },
     {
       name: "AWS Certified Solutions Architect – Professional",
       grade: "Professional",
       issued: "2022.11.13",
-      valid: "2025.11.13",
     },
     {
       name: "AWS Certified Solutions Architect – Associate",
       grade: "Associate",
       issued: "2022.07.03",
-      valid: "2025.11.13",
     },
     {
       name: "AWS Certified Cloud Practitioner",
       grade: "Foundational",
       issued: "2021.01.30",
-      valid: "2025.11.13",
     },
   ],
 
