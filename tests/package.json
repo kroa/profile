@@ -1,0 +1,12 @@
+{
+  "name": "profile-site-tests",
+  "version": "1.0.0",
+  "private": true,
+  "description": "jsdom-based render tests for the profile site",
+  "scripts": {
+    "test": "node render.test.js"
+  },
+  "devDependencies": {
+    "jsdom": "^24.1.0"
+  }
+}

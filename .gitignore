@@ -1,0 +1,27 @@
+# Dependencies / test tooling (개발용 - 배포/공개 대상 아님)
+node_modules/
+package-lock.json
+tests/node_modules/
+
+# 개인정보·민감정보 (절대 커밋 금지)
+*.env
+.env*
+secrets*.json
+private/
+resume/
+이력서*
+포트폴리오*
+*.resume.*
+
+# OS / Editor
+.DS_Store
+Thumbs.db
+desktop.ini
+.idea/
+.vscode/
+*.swp
+*~
+
+# Logs / temp
+*.log
+.tmp/

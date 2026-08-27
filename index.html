@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="김승원 · System & Cloud Architect. 17년차 아키텍트의 클라우드 아키텍처, DevOps, 고객 접점 시스템 구축 여정." />
+  <meta name="author" content="김승원" />
+  <meta name="theme-color" content="#0a0e14" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="김승원 · System & Cloud Architect" />
+  <meta property="og:description" content="17년차 아키텍트 · AWS 클라우드 아키텍처 · DevOps · 고객 접점 시스템" />
+  <meta property="og:locale" content="ko_KR" />
+
+  <title>김승원 · System & Cloud Architect</title>
+
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css"
+  />
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%E2%9C%A6%3C/text%3E%3C/svg%3E" />
+</head>
+<body>
+  <!-- Progress bar -->
+  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+
+  <!-- Ambient background -->
+  <div class="bg-ambient" aria-hidden="true">
+    <div class="bg-orb bg-orb--1"></div>
+    <div class="bg-orb bg-orb--2"></div>
+    <div class="bg-orb bg-orb--3"></div>
+    <div class="bg-grid"></div>
+    <div class="bg-glow" id="cursorGlow"></div>
+  </div>
+
+  <!-- Navigation -->
+  <header class="nav" id="nav">
+    <div class="nav__inner">
+      <a href="#home" class="nav__brand" aria-label="홈으로">
+        <span class="nav__mark">✦</span>
+        <span class="nav__name">김승원</span>
+      </a>
+      <nav class="nav__links" id="navLinks" aria-label="주요 섹션">
+        <a href="#about" class="nav__link">소개</a>
+        <a href="#experience" class="nav__link">경력</a>
+        <a href="#projects" class="nav__link">프로젝트</a>
+        <a href="#ai" class="nav__link">AI</a>
+        <a href="#skills" class="nav__link">기술</a>
+        <a href="#certs" class="nav__link">자격증</a>
+        <a href="#awards" class="nav__link">활동</a>
+        <a href="#contact" class="nav__link nav__link--cta">연락처</a>
+      </nav>
+      <button class="nav__toggle" id="navToggle" aria-label="메뉴 열기" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero" id="home">
+      <div class="hero__inner">
+        <p class="hero__eyebrow reveal" data-reveal>DEVELOPER · PM · ARCHITECT</p>
+        <h1 class="hero__title">
+          <span class="reveal" data-reveal data-reveal-delay="1">복잡함을</span>
+          <span class="reveal" data-reveal data-reveal-delay="2"><em>단순한 구조</em>로,</span>
+          <span class="reveal" data-reveal data-reveal-delay="3">변화를 <em>안정적인 시스템</em>으로.</span>
+        </h1>
+        <p class="hero__lead reveal" data-reveal data-reveal-delay="4">
+          개발자 · 프로젝트 매니저 · 아키텍트를 모두 수행하는 <strong>다재다능한 IT솔루션 스페셜리스트</strong>입니다.
+          다양한 POS·KIOSK 시스템을 성공적으로 도입해 백화점 업계에서 선구자적 역할을 수행했고,
+          현재는 신세계백화점 영업정보/분석 시스템을 운영하며 <strong>AWS 클라우드 Application Architect</strong>로 활동하고 있습니다.
+        </p>
+        <div class="hero__actions reveal" data-reveal data-reveal-delay="5">
+          <a href="#projects" class="btn btn--primary">주요 프로젝트 보기</a>
+          <a href="#contact" class="btn btn--ghost">연락하기</a>
+        </div>
+
+        <ul class="hero__stats reveal" data-reveal data-reveal-delay="6">
+          <li>
+            <span class="hero__stat-num" data-count="17" data-suffix="년">0</span>
+            <span class="hero__stat-label">아키텍트/개발 경력</span>
+          </li>
+          <li>
+            <span class="hero__stat-num" data-count="4" data-suffix="개">0</span>
+            <span class="hero__stat-label">AWS 자격증 보유</span>
+          </li>
+          <li>
+            <span class="hero__stat-num" data-count="3" data-suffix="회">0</span>
+            <span class="hero__stat-label">사내 우수사원 수상</span>
+          </li>
+          <li>
+            <span class="hero__stat-num" data-count="8" data-suffix="개">0</span>
+            <span class="hero__stat-label">주요 리딩 프로젝트</span>
+          </li>
+        </ul>
+      </div>
+      <a href="#about" class="hero__scroll" aria-label="아래로 스크롤">
+        <span class="hero__scroll-line"></span>
+        SCROLL
+      </a>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="section" id="about">
+      <div class="container">
+        <div class="section__head reveal" data-reveal>
+          <span class="section__index">01</span>
+          <h2 class="section__title">소개</h2>
+        </div>
+        <div class="about">
+          <div class="about__lead reveal" data-reveal>
+            <p>
+              백화점 차세대 시스템의 전 과정 아키텍처를 리딩하며
+              <strong>다양한 개발 언어 · 배치 · WAS · DB 전반</strong>에 걸친 설계와 운영을 담당해 왔습니다.
+              서비스 특성에 맞춰 아키텍처를 최적화하고, 성능·가용성 테스트를 주도하며,
+              실제 운영 환경의 문제를 <strong>정의 → 진단 → 해결</strong>하는 흐름을 이끕니다.
+            </p>
+            <p>
+              "최초"의 경험이 많습니다. 국내 POS 업계 최초 CI/CD, 그룹사 최초 태블릿 POS,
+              최초 Datadog 기반 End-to-End 관제 체계 수립까지 —
+              새로운 기술을 실 운영에 안착시키는 일을 즐깁니다.
+            </p>
+          </div>
+          <ul class="about__pillars">
+            <li class="about__pillar reveal" data-reveal data-reveal-delay="1">
+              <h3>아키텍처 &amp; 표준화</h3>
+              <p>언어·배치·WAS·DB 전반의 아키텍트. 서비스 특성별 최적화와 산출물 검토, 이슈 해결을 주도합니다.</p>
+            </li>
+            <li class="about__pillar reveal" data-reveal data-reveal-delay="2">
+              <h3>AWS 클라우드</h3>
+              <p>Aurora·Redshift 기반 대규모 운영, 하이브리드 인프라 설계, 비용 최적화와 가용성 확보.</p>
+            </li>
+            <li class="about__pillar reveal" data-reveal data-reveal-delay="3">
+              <h3>DevOps &amp; 관제</h3>
+              <p>그룹사 최초 POS CI/CD 구축, Datadog 기반 커스텀 메트릭·모니터·장애 대응 체계화.</p>
+            </li>
+            <li class="about__pillar reveal" data-reveal data-reveal-delay="4">
+              <h3>고객 접점 UX</h3>
+              <p>태블릿·모바일 POS, 픽업 KIOSK 등 오프라인–온라인 연계 시스템 기획과 구축을 리딩.</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section class="section section--alt" id="experience">
+      <div class="container">
+        <div class="section__head reveal" data-reveal>
+          <span class="section__index">02</span>
+          <h2 class="section__title">경력</h2>
+        </div>
+        <div class="career">
+          <article class="career__item reveal" data-reveal>
+            <div class="career__period">
+              <span class="career__now">현재</span>
+              2012.09 &ndash; 재직 중
+            </div>
+            <div class="career__body">
+              <h3 class="career__company">신세계아이앤씨</h3>
+              <p class="career__role">통합 영업정보 시스템 운영 아키텍트 (AA/TA) · <strong>부장</strong> · 정규직</p>
+              <p class="career__desc">
+                신세계백화점 통합 영업정보/분석 시스템의 아키텍처 설계와 운영을 총괄.
+                하이브리드 클라우드, 데이터 플랫폼, 관제 체계를 아우르는 전 과정을 리딩합니다.
+              </p>
+            </div>
+          </article>
+          <article class="career__item reveal" data-reveal data-reveal-delay="1">
+            <div class="career__period">2008.08 &ndash; 2012.08</div>
+            <div class="career__body">
+              <h3 class="career__company">지어소프트</h3>
+              <p class="career__role">KT MMS/SMS 메시징 서버 플랫폼 개발 및 운영 · <strong>대리</strong> · 정규직</p>
+              <p class="career__desc">
+                대용량 메시징 서버 플랫폼의 개발과 운영을 담당하며 C/C++ 기반 시스템 역량을 다졌습니다.
+              </p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section class="section" id="projects">
+      <div class="container">
+        <div class="section__head reveal" data-reveal>
+          <span class="section__index">03</span>
+          <h2 class="section__title">주요 프로젝트</h2>
+          <p class="section__sub">아키텍처 리딩부터 고객 접점 시스템까지</p>
+        </div>
+
+        <div class="timeline" id="timeline">
+          <!-- populated by JS from data -->
+        </div>
+      </div>
+    </section>
+
+    <!-- AI PROJECTS -->
+    <section class="section section--alt" id="ai">
+      <div class="container">
+        <div class="section__head reveal" data-reveal>
+          <span class="section__index">04</span>
+          <h2 class="section__title">개인 AI 프로젝트</h2>
+          <p class="section__sub">AI 시대의 아키텍트가 일하는 방식</p>
+        </div>
+        <div class="ai-grid" id="ai-grid">
+          <!-- populated by JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section class="section" id="skills">
+      <div class="container">
+        <div class="section__head reveal" data-reveal>
+          <span class="section__index">05</span>
+          <h2 class="section__title">기술 스택</h2>
+          <p class="section__sub">17년간 쌓아온 전방위 기술 경험</p>
+        </div>
+        <div class="skills" id="skills-grid">
+          <!-- populated by JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- CERTIFICATIONS -->
+    <section class="section section--alt" id="certs">
+      <div class="container">
+        <div class="section__head reveal" data-reveal>
+          <span class="section__index">06</span>
+          <h2 class="section__title">자격 / 면허</h2>
+          <p class="section__sub">AWS 전 영역 자격증</p>
+        </div>
+        <div class="certs" id="certs-grid">
+          <!-- populated by JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- AWARDS & ACTIVITIES -->
+    <section class="section" id="awards">
+      <div class="container">
+        <div class="section__head reveal" data-reveal>
+          <span class="section__index">07</span>
+          <h2 class="section__title">수상 &amp; 활동</h2>
+        </div>
+        <div class="awards">
+          <div class="awards__group reveal" data-reveal>
+            <h3 class="awards__title">사내 우수사원 <span>3회 수상</span></h3>
+            <ul class="awards__list">
+              <li>국내 POS 업계 최초 CI/CD 적용</li>
+              <li>AWS Aurora MySQL 운영비 절감</li>
+              <li>그룹사 최초 태블릿 POS 기획 및 도입</li>
+            </ul>
+          </div>
+          <div class="awards__group reveal" data-reveal data-reveal-delay="1">
+            <h3 class="awards__title">사내 <span>AI League 우수상</span></h3>
+            <ul class="awards__list">
+              <li>보안 스크립트 수행 도우미 <strong>SecuDog</strong> 개발</li>
+              <li>오픈소스 제로 의존성 · 폐쇄망(VDI) 지원</li>
+            </ul>
+          </div>
+          <div class="awards__group reveal" data-reveal data-reveal-delay="2">
+            <h3 class="awards__title">사내외 홍보 영상 출연</h3>
+            <ul class="awards__list awards__list--links">
+              <li>
+                <a href="https://www.youtube.com/watch?v=R0P6jXCw4ic&t=3s" target="_blank" rel="noopener noreferrer">
+                  소프트웨어 개발 직무 소개 영상 <span class="ext">↗</span>
+                </a>
+              </li>
+              <li>
+                <a href="https://www.youtube.com/watch?v=c317VLcHiHk" target="_blank" rel="noopener noreferrer">
+                  MS 협업 태블릿 POS 소개 영상 <span class="ext">↗</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="section__head section__head--sub reveal" data-reveal>
+          <h3 class="section__title section__title--sm">세미나 &amp; 해외 활동</h3>
+        </div>
+        <div class="activities" id="activities">
+          <!-- populated by JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="section section--contact" id="contact">
+      <div class="container">
+        <div class="contact reveal" data-reveal>
+          <span class="section__index">08</span>
+          <h2 class="contact__title">함께 이야기 나눠요</h2>
+          <p class="contact__lead">
+            아키텍처, 클라우드, DevOps에 대한 협업이나 문의는 언제든 환영합니다.
+          </p>
+          <a href="mailto:kroa@naver.com" class="contact__email">kroa@naver.com</a>
+          <ul class="contact__links">
+            <li>
+              <a href="https://github.com/kroa/profile" target="_blank" rel="noopener noreferrer">
+                <span class="contact__link-label">GitHub</span>
+                <span class="contact__link-val">github.com/kroa</span>
+              </a>
+            </li>
+            <li>
+              <a href="https://blog.naver.com/kroa/222182144810" target="_blank" rel="noopener noreferrer">
+                <span class="contact__link-label">Blog</span>
+                <span class="contact__link-val">blog.naver.com/kroa</span>
+              </a>
+            </li>
+            <li>
+              <a href="https://awsbeginner-ddd01.firebaseapp.com/" target="_blank" rel="noopener noreferrer">
+                <span class="contact__link-label">AWS 자격증 앱</span>
+                <span class="contact__link-val">직접 개발한 학습 앱</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <span>✦ 김승원 · System &amp; Cloud Architect</span>
+      <span class="footer__meta">© <span id="year"></span> · Built with care</span>
+    </div>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
