@@ -208,7 +208,7 @@ img { max-width: 100%; display: block; }
 .hero__inner {
   width: 100%;
   display: grid;
-  grid-template-columns: 1.4fr 0.6fr;
+  grid-template-columns: 1.05fr 0.95fr;
   align-items: center;
   gap: clamp(28px, 5vw, 64px);
 }
@@ -303,8 +303,8 @@ img { max-width: 100%; display: block; }
 .hero__portrait { display: flex; flex-direction: column; align-items: center; gap: 16px; }
 .hero__portrait-frame {
   position: relative;
-  width: min(300px, 60vw);
-  aspect-ratio: 4 / 5;
+  width: min(460px, 88vw);
+  aspect-ratio: 16 / 10;
   border-radius: 22px;
   overflow: hidden;
   background:
@@ -330,6 +330,8 @@ img { max-width: 100%; display: block; }
   transition: opacity 0.7s var(--ease), transform 0.9s var(--ease);
 }
 .hero__photo.is-loaded { opacity: 1; transform: scale(1); }
+/* 사진이 로드되면 폴백용 '김' 모노그램 숨김 (사진 없을 때만 표시) */
+.hero__photo.is-loaded ~ .hero__monogram { opacity: 0; }
 .hero__portrait-ring {
   position: absolute; inset: -1px;
   border-radius: 22px;
@@ -669,7 +671,7 @@ img { max-width: 100%; display: block; }
   .hero__inner { grid-template-columns: 1fr; gap: 34px; }
   .hero__content { max-width: 100%; }
   .hero__portrait { order: -1; }
-  .hero__portrait-frame { width: min(220px, 55vw); }
+  .hero__portrait-frame { width: min(440px, 92vw); }
 }
 @media (max-width: 900px) {
   .about { grid-template-columns: 1fr; }

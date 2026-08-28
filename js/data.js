@@ -7,8 +7,8 @@
    ===================================================================== */
 
 const PROFILE = {
-  /* 프로필 사진 — assets/img/profile.jpg */
-  profilePhoto: "assets/img/profile.jpg",
+  /* 프로필 사진 — assets/img/profile.png */
+  profilePhoto: "assets/img/profile.png",
 
   /* ---------- 주요 프로젝트 (최신순) ---------- */
   projects: [
@@ -29,7 +29,7 @@ const PROFILE = {
       links: [],
       accent: "cloud",
       glyph: "☁️",
-      img: "assets/img/proj-aws-architecture.jpg",
+      img: "assets/img/proj-aws-architecture.png",
     },
     {
       period: "2021.03 – 2021.11",
@@ -45,7 +45,7 @@ const PROFILE = {
       links: [],
       accent: "plan",
       glyph: "🧭",
-      img: "assets/img/proj-piisp.jpg",
+      img: "assets/img/proj-piisp.png",
     },
     {
       period: "2020.07 – 2021.02",
@@ -62,7 +62,7 @@ const PROFILE = {
       links: [],
       accent: "devops",
       glyph: "🔧",
-      img: "assets/img/proj-devops.jpg",
+      img: "assets/img/proj-devops.png",
     },
     {
       period: "2019.09 – 2020.01",
@@ -78,7 +78,7 @@ const PROFILE = {
       links: [],
       accent: "kiosk",
       glyph: "📦",
-      img: "assets/img/proj-ssg-pixel.jpg",
+      img: "assets/img/proj-ssg-pixel.png",
     },
     {
       period: "2018.10 – 2019.04",
@@ -94,7 +94,7 @@ const PROFILE = {
       links: [],
       accent: "kiosk",
       glyph: "🛒",
-      img: "assets/img/proj-sco.jpg",
+      img: "assets/img/proj-sco.png",
     },
     {
       period: "2018.04 – 2019.04",
@@ -110,7 +110,7 @@ const PROFILE = {
       links: [],
       accent: "pos",
       glyph: "🏧",
-      img: "assets/img/proj-cashterminal.jpg",
+      img: "assets/img/proj-cashterminal.png",
     },
     {
       period: "2017.08 – 2018.06",
@@ -129,7 +129,7 @@ const PROFILE = {
       ],
       accent: "pos",
       glyph: "📱",
-      img: "assets/img/proj-mobile-pos.jpg",
+      img: "assets/img/proj-mobile-pos.png",
     },
     {
       period: "2014.11 – 2016.02",
@@ -148,7 +148,7 @@ const PROFILE = {
       ],
       accent: "pos",
       glyph: "🧾",
-      img: "assets/img/proj-tablet-pos.jpg",
+      img: "assets/img/proj-tablet-pos.png",
     },
   ],
 
@@ -167,7 +167,7 @@ const PROFILE = {
       tags: ["C#", "WPF", "AI", "보안"],
       accent: "ai",
       glyph: "🐕",
-      img: "assets/img/ai-secudog.jpg",
+      img: "assets/img/ai-secudog.png",
     },
     {
       period: "2026.02 – 2026.03",
@@ -181,7 +181,7 @@ const PROFILE = {
       tags: ["n8n", "MCP", "Automation", "AI"],
       accent: "ai",
       glyph: "🤖",
-      img: "assets/img/ai-n8n.jpg",
+      img: "assets/img/ai-n8n.png",
     },
   ],
 
