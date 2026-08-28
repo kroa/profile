@@ -476,6 +476,8 @@ img { max-width: 100%; display: block; }
   transition: opacity 0.6s var(--ease), transform 0.8s var(--ease);
 }
 .card-media__img.is-loaded { opacity: 1; transform: scale(1); }
+/* 사진이 로드되면 뒤 아이콘(글리프) 숨김 — 사진 없을 때만 표시 */
+.card-media__img.is-loaded ~ .card-media__glyph { opacity: 0; }
 /* accent별 플레이스홀더 색 */
 .card-media[data-accent="cloud"]  { background: linear-gradient(150deg, #14263f, #0c1622); }
 .card-media[data-accent="devops"] { background: linear-gradient(150deg, #241a3b, #120e20); }
