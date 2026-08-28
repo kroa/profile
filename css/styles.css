@@ -392,8 +392,25 @@ img { max-width: 100%; display: block; }
 
 /* ---------- About ---------- */
 .about { display: grid; grid-template-columns: 1.1fr 1fr; gap: clamp(30px, 5vw, 64px); align-items: start; }
-.about__lead p { color: var(--text-soft); font-size: 1.06rem; margin-bottom: 20px; }
+.about__lead p { color: var(--text-soft); font-size: 1.06rem; margin-bottom: 20px; text-wrap: pretty; }
 .about__lead strong { color: var(--gold-2); font-weight: 700; }
+/* "최초" 경험 — 한 줄에 하나씩, 골드 마커 */
+.about__firsts { display: grid; gap: 10px; margin: -4px 0 20px; }
+.about__firsts li {
+  position: relative;
+  padding-left: 26px;
+  color: var(--text);
+  font-size: 1.02rem;
+  font-weight: 600;
+}
+.about__firsts li::before {
+  content: "";
+  position: absolute;
+  left: 0; top: 0.62em;
+  width: 12px; height: 2px;
+  background: var(--grad-gold);
+  border-radius: 2px;
+}
 .about__pillars { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
 .about__pillar {
   padding: 22px;
