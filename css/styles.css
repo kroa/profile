@@ -488,11 +488,16 @@ img { max-width: 100%; display: block; }
 .timeline__item:hover::before { transform: scale(1.25); box-shadow: 0 0 0 6px rgba(233,200,119,0.18); }
 .timeline__item.has-media {
   display: grid;
-  grid-template-columns: 1fr 280px;
+  grid-template-columns: 1fr 360px;
   gap: 28px;
-  align-items: stretch;
+  align-items: start;
 }
-.timeline__item.has-media .card-media { min-height: 100%; }
+/* 프로젝트 사진은 가로형(16:10)으로 상단 정렬 */
+.timeline__item.has-media .card-media {
+  aspect-ratio: 16 / 10;
+  min-height: 0;
+  align-self: start;
+}
 .timeline__top { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-bottom: 6px; }
 .timeline__period { font-family: var(--mono); font-size: 0.85rem; color: var(--gold); }
 .timeline__badge {
