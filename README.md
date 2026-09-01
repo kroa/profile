@@ -1,5 +1,7 @@
 # 김승원 · System & Cloud Architect — Profile
 
+### 🔗 라이브 사이트 → **https://kroa.github.io/profile/**
+
 개발자 · 프로젝트 매니저 · 아키텍트를 모두 수행하는 IT솔루션 스페셜리스트의 프로필 웹사이트입니다.
 빌드 단계가 없는 **순수 정적 사이트**(HTML/CSS/JS)로, GitHub Pages에서 바로 서비스됩니다.
 
@@ -18,8 +20,7 @@
 ├── css/styles.css        # 디자인 시스템
 ├── js/data.js            # 콘텐츠 데이터 (여기만 고치면 내용 갱신)
 ├── js/main.js            # 렌더링 & 인터랙션
-├── .nojekyll             # GitHub Pages Jekyll 처리 비활성화
-└── .github/workflows/deploy.yml  # Pages 자동 배포
+└── .nojekyll             # GitHub Pages Jekyll 처리 비활성화
 ```
 
 ## 🖥 로컬 실행
@@ -33,24 +34,19 @@ python -m http.server 8080
 
 ## 🚀 배포 (GitHub Pages)
 
-### 방법 A — GitHub Actions (권장, 이 저장소에 포함됨)
+이 저장소는 **브랜치 배포** 방식으로 서비스됩니다.
 
-1. 저장소에 코드를 push 합니다.
+1. GitHub → **Settings → Pages → Build and deployment → Source** 를 **Deploy from a branch** → `main` / `/ (root)` 로 지정합니다.
+2. 이후 `main` 브랜치에 push 하면 GitHub 내장 빌드가 자동으로 재배포합니다.
    ```bash
-   git init
    git add .
-   git commit -m "feat: profile site"
-   git branch -M main
-   git remote add origin https://github.com/kroa/profile.git
-   git push -u origin main
+   git commit -m "update"
+   git push
    ```
-2. GitHub → **Settings → Pages → Build and deployment → Source** 를 **GitHub Actions** 로 설정합니다.
-3. push 시 `deploy.yml` 워크플로우가 자동 배포합니다.
-   공개 주소: `https://kroa.github.io/profile/`
+3. 공개 주소: **https://kroa.github.io/profile/**
 
-### 방법 B — 브랜치 배포
-
-Settings → Pages → Source 를 **Deploy from a branch** → `main` / `/ (root)` 로 지정해도 됩니다.
+> `.nojekyll` 이 있어 Jekyll 처리 없이 정적 파일이 그대로 서비스됩니다.
+> (Private 저장소는 무료 플랜에서 Pages를 쓸 수 없으므로 저장소는 Public 이어야 합니다.)
 
 ## 🔒 개인정보 보호
 
