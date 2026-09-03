@@ -131,6 +131,8 @@ function ok(cond, msg) {
   ok(body.includes("셀프계산대") || body.includes("SCO"), "셀프계산대(SCO) 프로젝트 노출");
   ok(body.includes("Datadog"), "Datadog 관제 경험 노출");
   ok(doc.querySelector("#year") && doc.querySelector("#year").textContent.trim() !== "", "푸터 연도 채워짐");
+  ok(body.includes("마법한자대모험") && !!doc.querySelector('#side a[href*="magichanjaadventure"]'),
+    "사이드 프로젝트(마법한자대모험) 노출 및 링크 연결");
 
   console.log("\n[링크 / 보안]");
   const extLinks = Array.from(doc.querySelectorAll('a[target="_blank"]'));
