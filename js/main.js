@@ -111,12 +111,14 @@
     wrap.innerHTML = PROFILE.certs
       .map(
         (c, i) => `
-        <div class="cert-card reveal" data-reveal data-reveal-delay="${i % 2}" data-vendor="${esc(c.vendor || "")}">
+        <div class="cert-card reveal" data-reveal data-reveal-delay="${i % 3}" data-vendor="${esc(c.vendor || "")}">
           ${c.img ? `<span class="cert-card__badge"><img src="${esc(c.img)}" alt="" data-fallback /></span>` : ""}
-          <span class="cert-card__grade">${esc(c.grade)}</span>
-          <h3 class="cert-card__name">${esc(c.name)}</h3>
-          <div class="cert-card__dates">
-            <span>취득 <b>${esc(c.issued)}</b></span>
+          <div class="cert-card__body">
+            <span class="cert-card__grade">${esc(c.grade)}</span>
+            <h3 class="cert-card__name">${esc(c.name)}</h3>
+            <div class="cert-card__dates">
+              <span>취득 <b>${esc(c.issued)}</b></span>
+            </div>
           </div>
         </div>`
       )
@@ -180,6 +182,24 @@
         </div>
         <div class="edu__shots">${shots}</div>
       </article>`;
+  }
+
+  /* ---------- Render: Mentoring (채용·직무 상담) ---------- */
+  function renderMentoring() {
+    const wrap = $("#mentoring");
+    if (!wrap || !window.PROFILE || !PROFILE.mentoring) return;
+    wrap.innerHTML = PROFILE.mentoring
+      .map(
+        (m, i) => `
+        <div class="activity reveal" data-reveal data-reveal-delay="${i % 2}">
+          <span class="activity__period">${esc(m.period)}</span>
+          <div>
+            <div class="activity__title">${esc(m.title)}</div>
+            <div class="activity__desc">${esc(m.desc)}</div>
+          </div>
+        </div>`
+      )
+      .join("");
   }
 
   /* ---------- Render: Side projects ---------- */
@@ -417,6 +437,7 @@
     renderCerts();
     renderPapers();
     renderEducation();
+    renderMentoring();
     renderActivities();
     renderSideProjects();
     renderVideos();

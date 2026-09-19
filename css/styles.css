@@ -396,6 +396,27 @@ img { max-width: 100%; display: block; }
 .about__lead strong { color: var(--gold-2); font-weight: 700; }
 /* 지정된 지점에서 줄바꿈 (좀은 화면에선 각 줄이 자연 줄바꿈) */
 .about__lead .lb { display: block; }
+.about__bottom { display: grid; grid-template-columns: 240px 1fr; gap: clamp(20px, 3vw, 34px); align-items: start; }
+.about__photo { margin: 0; }
+.about__photo img {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  opacity: 0;
+  transition: opacity 0.5s var(--ease), transform 0.5s var(--ease);
+}
+.about__photo img.is-loaded { opacity: 1; }
+.about__photo:hover img.is-loaded { transform: translateY(-4px); }
+.about__photo figcaption {
+  margin-top: 10px;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  text-align: center;
+}
 /* "최초" 경험 — 한 줄에 하나씩, 골드 마커 */
 .about__firsts { display: grid; gap: 10px; margin: -4px 0 20px; }
 .about__firsts li {
@@ -645,27 +666,29 @@ img { max-width: 100%; display: block; }
 .skill-item__note { font-family: var(--mono); font-size: 0.72rem; color: var(--gold-deep); white-space: nowrap; }
 
 /* ---------- Certifications ---------- */
-.certs { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
+.certs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
 .cert-card {
   position: relative;
-  padding: 26px 28px;
+  padding: 16px 18px;
   border: 1px solid var(--border);
-  border-radius: var(--radius);
+  border-radius: var(--radius-sm);
   background: var(--surface);
-  display: flex; flex-direction: column; gap: 12px;
+  display: flex; align-items: center; gap: 14px;
   transition: transform 0.35s var(--ease), border-color 0.35s, box-shadow 0.35s;
   overflow: hidden;
 }
+.cert-card__body { display: flex; flex-direction: column; gap: 5px; min-width: 0; }
 .cert-card::after {
-  content: attr(data-vendor); position: absolute; right: -6px; bottom: -14px;
-  font-weight: 800; font-size: 3.4rem; letter-spacing: -0.04em;
-  color: rgba(255,255,255,0.03);
+  content: attr(data-vendor); position: absolute; right: -4px; bottom: -10px;
+  font-weight: 800; font-size: 2.2rem; letter-spacing: -0.04em;
+  color: rgba(255,255,255,0.035);
+  pointer-events: none;
 }
-.cert-card:hover { transform: translateY(-5px); border-color: var(--border-strong); box-shadow: var(--shadow); }
+.cert-card:hover { transform: translateY(-4px); border-color: var(--border-strong); box-shadow: var(--shadow); }
 .cert-card__badge {
   position: relative; display: none; /* 로드 성공 시 .is-ready 로 표시 */
-  width: 52px; height: 52px;
-  margin-bottom: 2px;
+  width: 46px; height: 46px;
+  flex-shrink: 0;
 }
 .cert-card__badge img {
   position: absolute; inset: 0;
@@ -678,14 +701,14 @@ img { max-width: 100%; display: block; }
 
 .cert-card__grade {
   align-self: flex-start;
-  font-family: var(--mono); font-size: 0.72rem; font-weight: 600;
+  font-family: var(--mono); font-size: 0.64rem; font-weight: 600;
   color: var(--gold-2);
   border: 1px solid rgba(233,200,119,0.35);
   background: rgba(233,200,119,0.08);
-  padding: 3px 12px; border-radius: 999px;
+  padding: 2px 9px; border-radius: 999px;
 }
-.cert-card__name { font-size: 1.08rem; font-weight: 700; line-height: 1.4; }
-.cert-card__dates { display: flex; gap: 20px; font-size: 0.82rem; color: var(--muted); font-family: var(--mono); }
+.cert-card__name { font-size: 0.9rem; font-weight: 700; line-height: 1.35; }
+.cert-card__dates { display: flex; gap: 14px; font-size: 0.72rem; color: var(--muted); font-family: var(--mono); }
 .cert-card__dates b { color: var(--text-soft); font-weight: 600; }
 
 /* ---------- Awards ---------- */
@@ -704,6 +727,19 @@ img { max-width: 100%; display: block; }
 .awards__list li { position: relative; padding-left: 20px; color: var(--muted); font-size: 0.92rem; }
 .awards__list li::before { content: "✦"; position: absolute; left: 0; color: var(--gold); font-size: 0.8rem; top: 2px; }
 .awards__list strong { color: var(--text); }
+.awards__shot { margin: 16px 0 0; }
+.awards__shot img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  object-position: center 22%;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  opacity: 0;
+  transition: opacity 0.5s var(--ease);
+}
+.awards__shot img.is-loaded { opacity: 1; }
+
 .ext { font-family: var(--mono); color: var(--gold); }
 
 /* ---------- Activities ---------- */
@@ -951,6 +987,8 @@ img { max-width: 100%; display: block; }
 }
 @media (max-width: 900px) {
   .about__pillars { grid-template-columns: 1fr 1fr; }
+  .about__bottom { grid-template-columns: 200px 1fr; }
+  .certs { grid-template-columns: repeat(2, 1fr); }
   .skills { grid-template-columns: 1fr 1fr; }
   .ai-grid { grid-template-columns: 1fr; }
   .awards { grid-template-columns: 1fr; }
@@ -995,6 +1033,9 @@ img { max-width: 100%; display: block; }
   .paper { padding: 20px 20px 20px 54px; }
   .paper::before { left: 18px; top: 21px; }
   .about__pillars { grid-template-columns: 1fr; }
+  .certs { grid-template-columns: 1fr; }
+  .about__bottom { grid-template-columns: 1fr; }
+  .about__photo { max-width: 240px; margin-inline: auto; }
 }
 @media (max-width: 480px) {
   .skills { grid-template-columns: 1fr; }

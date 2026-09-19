@@ -183,6 +183,32 @@ function ok(cond, msg) {
   ok(srcs.every((a) => (a.getAttribute("rel") || "").includes("noopener")), "출처 링크에 rel=noopener");
 
   console.log();
+  console.log("[소개 사진 · 상담 · 경진대회]");
+  const aboutPhoto = doc.querySelector(".about__photo img");
+  ok(!!aboutPhoto && (aboutPhoto.getAttribute("src") || "").includes("idcard"),
+    "소개에 사원증 사진 노출");
+  ok((aboutPhoto && aboutPhoto.getAttribute("alt") || "").trim() !== "", "사원증 사진에 alt 존재");
+
+  const mentor = doc.querySelectorAll("#mentoring .activity");
+  ok(mentor.length === window.PROFILE.mentoring.length && mentor.length === 2,
+    `채용·직무 상담 ${mentor.length}건 렌더링 (기대: 2)`);
+  const mentorTxt = doc.querySelector("#mentoring").textContent;
+  ok(mentorTxt.includes("2022.10.12") && mentorTxt.includes("메타버스"), "메타버스 직무 상담(2022.10.12) 표기");
+  ok(mentorTxt.includes("2023.03.02") && mentorTxt.includes("채용박람회"), "대한민국 채용박람회(2023.03) 표기");
+  const mSeq = Array.from(doc.querySelectorAll("#awards *"));
+  ok(mSeq.indexOf(doc.querySelector("#education")) < mSeq.indexOf(doc.querySelector("#mentoring")) &&
+     mSeq.indexOf(doc.querySelector("#mentoring")) < mSeq.indexOf(doc.querySelector("#activities")),
+    "배치: 교육수료 → 채용·직무상담 → 세미나/해외활동");
+
+  const awardsTxt = doc.querySelector(".awards").textContent;
+  ok(awardsTxt.includes("클라우드 자격증 노하우 경진대회") && awardsTxt.includes("2021.09.16"),
+    "클라우드 자격증 경진대회 우승(2021.09.16) 표기");
+  ok(awardsTxt.includes("추신수") && awardsTxt.includes("최정"), "사인볼 부상 표기");
+  const cloudShot = doc.querySelector(".awards__shot img");
+  ok(!!cloudShot && (cloudShot.getAttribute("src") || "").includes("cloud"), "경진대회 기념 사진 노출");
+  ok(doc.querySelectorAll(".awards .awards__group").length === 3, "수상 카드 3개");
+
+  console.log();
   console.log("[경력 · 회사 소개]");
   const about = doc.querySelector(".career__about");
   ok(!!about, "지어소프트 회사 소개 블록 존재");
@@ -256,6 +282,12 @@ function ok(cond, msg) {
   ok(missing.length === 0,
     missing.length ? "누락된 이미지 파일: " + missing.join(", ")
                    : "참조된 이미지 파일이 모두 존재");
+  const domSrcs = Array.from(doc.querySelectorAll('img[src^="assets/img/"]'))
+    .map((im) => im.getAttribute("src"));
+  const domMissing = Array.from(new Set(domSrcs)).filter((r) => !fs.existsSync(path.join(ROOT, r)));
+  ok(domMissing.length === 0,
+    domMissing.length ? "DOM 에 있으나 파일 없는 이미지: " + domMissing.join(", ")
+                      : `DOM 렌더 이미지 ${new Set(domSrcs).size}종 모두 파일 존재`);
 
   console.log("\n[자격증 · 유효기간 제외]");
   const certsText = doc.querySelector("#certs-grid").textContent;
