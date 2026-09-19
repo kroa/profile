@@ -391,9 +391,11 @@ img { max-width: 100%; display: block; }
 .reveal.is-visible { opacity: 1; transform: none; }
 
 /* ---------- About ---------- */
-.about { display: grid; grid-template-columns: 1.1fr 1fr; gap: clamp(30px, 5vw, 64px); align-items: start; }
+.about { display: grid; grid-template-columns: 1fr; gap: clamp(28px, 4vw, 44px); align-items: start; }
 .about__lead p { color: var(--text-soft); font-size: 1.06rem; margin-bottom: 20px; text-wrap: pretty; }
 .about__lead strong { color: var(--gold-2); font-weight: 700; }
+/* 지정된 지점에서 줄바꿈 (좀은 화면에선 각 줄이 자연 줄바꿈) */
+.about__lead .lb { display: block; }
 /* "최초" 경험 — 한 줄에 하나씩, 골드 마커 */
 .about__firsts { display: grid; gap: 10px; margin: -4px 0 20px; }
 .about__firsts li {
@@ -411,7 +413,7 @@ img { max-width: 100%; display: block; }
   background: var(--grad-gold);
   border-radius: 2px;
 }
-.about__pillars { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.about__pillars { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
 .about__pillar {
   padding: 22px;
   border: 1px solid var(--border);
@@ -445,6 +447,31 @@ img { max-width: 100%; display: block; }
   background: var(--grad-gold);
   padding: 3px 12px; border-radius: 999px; letter-spacing: 0.05em;
 }
+.career__logo {
+  position: relative;
+  display: inline-grid; place-items: center;
+  width: 34px; height: 34px;
+  margin-right: 10px;
+  vertical-align: -9px;
+  border-radius: 9px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+}
+.career__logo img {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: contain; padding: 4px;
+  opacity: 0; transition: opacity 0.4s var(--ease);
+}
+.career__logo img.is-loaded { opacity: 1; }
+.career__logo-txt {
+  font-size: 0.86rem; font-weight: 800;
+  background: var(--grad-gold);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.career__logo img.is-loaded ~ .career__logo-txt { opacity: 0; }
+
 .career__company { font-size: 1.4rem; font-weight: 800; }
 .career__role { color: var(--gold-2); margin-top: 4px; font-size: 0.98rem; }
 .career__role strong { color: var(--text); }
@@ -614,6 +641,20 @@ img { max-width: 100%; display: block; }
   color: rgba(255,255,255,0.03);
 }
 .cert-card:hover { transform: translateY(-5px); border-color: var(--border-strong); box-shadow: var(--shadow); }
+.cert-card__badge {
+  position: relative; display: none; /* 로드 성공 시 .is-ready 로 표시 */
+  width: 52px; height: 52px;
+  margin-bottom: 2px;
+}
+.cert-card__badge img {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: contain;
+  opacity: 0; transition: opacity 0.4s var(--ease);
+}
+.cert-card__badge img.is-loaded { opacity: 1; }
+.cert-card__badge.is-ready { display: block; }
+
 .cert-card__grade {
   align-self: flex-start;
   font-family: var(--mono); font-size: 0.72rem; font-weight: 600;
@@ -804,6 +845,7 @@ img { max-width: 100%; display: block; }
 .paper__title { font-size: 1.02rem; font-weight: 600; color: var(--text); line-height: 1.6; }
 
 /* ---------- Side project ---------- */
+.sidepjs { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
 .sidepj {
   display: flex; align-items: center; gap: clamp(18px, 3vw, 30px);
   padding: clamp(22px, 3.5vw, 34px);
@@ -843,7 +885,8 @@ img { max-width: 100%; display: block; }
   transition: border-color 0.3s;
 }
 .contact__email:hover { border-color: var(--gold); }
-.contact__links { margin-top: 40px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+.contact__links { margin-top: 40px; display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; }
+.contact__links li { flex: 0 1 240px; }
 .contact__links a {
   display: flex; flex-direction: column; gap: 4px; align-items: center;
   padding: 20px 16px;
@@ -868,7 +911,7 @@ img { max-width: 100%; display: block; }
   .hero__portrait-frame { width: min(440px, 92vw); }
 }
 @media (max-width: 900px) {
-  .about { grid-template-columns: 1fr; }
+  .about__pillars { grid-template-columns: 1fr 1fr; }
   .skills { grid-template-columns: 1fr 1fr; }
   .ai-grid { grid-template-columns: 1fr; }
   .awards { grid-template-columns: 1fr; }
@@ -904,11 +947,12 @@ img { max-width: 100%; display: block; }
   .hero__stats { grid-template-columns: 1fr 1fr; gap: 24px; }
   .career__item { grid-template-columns: 1fr; gap: 14px; }
   .certs { grid-template-columns: 1fr; }
-  .contact__links { grid-template-columns: 1fr; }
+  .contact__links li { flex-basis: 100%; }
   .activity { grid-template-columns: 1fr; gap: 6px; }
   .activity__shots { grid-template-columns: repeat(auto-fit, minmax(128px, 1fr)); }
   .edu__card { grid-template-columns: 1fr; gap: 20px; padding: 22px 20px; }
   .videos { grid-template-columns: 1fr; }
+  .sidepjs { grid-template-columns: 1fr; }
   .paper { padding: 20px 20px 20px 54px; }
   .paper::before { left: 18px; top: 21px; }
   .about__pillars { grid-template-columns: 1fr; }

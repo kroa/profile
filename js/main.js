@@ -107,6 +107,7 @@
       .map(
         (c, i) => `
         <div class="cert-card reveal" data-reveal data-reveal-delay="${i % 2}" data-vendor="${esc(c.vendor || "")}">
+          ${c.img ? `<span class="cert-card__badge"><img src="${esc(c.img)}" alt="" data-fallback /></span>` : ""}
           <span class="cert-card__grade">${esc(c.grade)}</span>
           <h3 class="cert-card__name">${esc(c.name)}</h3>
           <div class="cert-card__dates">
@@ -130,7 +131,11 @@
             <span class="paper__venue">${esc(p.venue)}</span>
             ${p.note ? `<span class="paper__note">${esc(p.note)}</span>` : ""}
           </div>
-          <p class="paper__title">${esc(p.title)}</p>
+          <p class="paper__title">${
+            p.url
+              ? `<a href="${esc(p.url)}" target="_blank" rel="noopener noreferrer">${esc(p.title)} <span class="ext" aria-hidden="true">↗</span></a>`
+              : esc(p.title)
+          }</p>
         </li>`
       )
       .join("");
@@ -162,6 +167,26 @@
         </div>
         <div class="edu__shots">${shots}</div>
       </article>`;
+  }
+
+  /* ---------- Render: Side projects ---------- */
+  function renderSideProjects() {
+    const wrap = $("#side-list");
+    if (!wrap || !window.PROFILE || !PROFILE.sideProjects) return;
+    wrap.innerHTML = PROFILE.sideProjects
+      .map(
+        (sp, i) => `
+        <a class="sidepj reveal" data-reveal data-reveal-delay="${i}"
+           href="${esc(sp.url)}" target="_blank" rel="noopener noreferrer">
+          <span class="sidepj__glyph" aria-hidden="true">${esc(sp.glyph || "✨")}</span>
+          <span class="sidepj__body">
+            <span class="sidepj__title">${esc(sp.title)} <span class="ext" aria-hidden="true">↗</span></span>
+            <span class="sidepj__desc">${esc(sp.desc)}</span>
+            <span class="sidepj__repo">${esc(sp.label)}</span>
+          </span>
+        </a>`
+      )
+      .join("");
   }
 
   /* ---------- Render: Promo videos ---------- */
@@ -340,7 +365,14 @@
   /* ---------- Image fallback: 로딩 성공 시에만 표시(실패하면 플레이스홀더 유지) ---------- */
   function initImageFallback() {
     $$("img[data-fallback]").forEach((img) => {
-      const reveal = () => img.classList.add("is-loaded");
+      const reveal = () => {
+        img.classList.add("is-loaded");
+        // 배지는 기본 숨김 — 실제로 로드된 경우에만 노출(:has 미지원 브라우저 대응)
+        const badge = img.parentNode;
+        if (badge && badge.classList && badge.classList.contains("cert-card__badge")) {
+          badge.classList.add("is-ready");
+        }
+      };
       const hide = () => img.classList.remove("is-loaded");
       if (img.complete && img.naturalWidth > 0) reveal();
       img.addEventListener("load", reveal);
@@ -372,6 +404,7 @@
     renderPapers();
     renderEducation();
     renderActivities();
+    renderSideProjects();
     renderVideos();
     initHeroPhoto();
     initImageFallback();

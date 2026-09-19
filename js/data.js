@@ -238,49 +238,73 @@ const PROFILE = {
       vendor: "AWS",
       grade: "Specialty",
       issued: "2024.12.26",
+      img: "assets/img/cert-aws-ans.png",
     },
     {
       name: "AWS Certified Solutions Architect – Professional",
       vendor: "AWS",
       grade: "Professional",
       issued: "2022.11.13",
+      img: "assets/img/cert-aws-sap.png",
     },
     {
       name: "AWS Certified Solutions Architect – Associate",
       vendor: "AWS",
       grade: "Associate",
       issued: "2022.07.03",
+      img: "assets/img/cert-aws-saa.png",
     },
     {
       name: "Google Cloud Certified – Associate Cloud Engineer",
       vendor: "GCP",
       grade: "Associate",
       issued: "2021.02.18",
+      img: "assets/img/cert-gcp-ace.png",
     },
     {
       name: "AWS Certified Cloud Practitioner",
       vendor: "AWS",
       grade: "Foundational",
       issued: "2021.01.30",
+      img: "assets/img/cert-aws-ccp.png",
     },
     {
       name: "Microsoft Certified: Azure Fundamentals",
       vendor: "Azure",
       grade: "Fundamentals",
       issued: "2021.01.26",
+      img: "assets/img/cert-azure-af.png",
+    },
+  ],
+
+  /* ---------- 사이드 프로젝트 ---------- */
+  sideProjects: [
+    {
+      title: "마법한자대모험",
+      desc: "아들이 요청해서 만든 한자 학습 게임",
+      url: "https://github.com/kroa/magichanjaadventure",
+      label: "github.com/kroa/magichanjaadventure",
+      glyph: "🀄",
+    },
+    {
+      title: "여의도실용음악학원 소개 사이트",
+      desc: "동생들이 요청해서 만든 실용음악학원 소개 웹사이트",
+      url: "https://ydmusic.pages.dev/",
+      label: "ydmusic.pages.dev",
+      glyph: "🎹",
     },
   ],
 
   /* ---------- 교육 수료 (서울대 EPM) ---------- */
   education: {
-    period: "2026.06.12 – 2026.09.18",
+    period: "2026.03.27 – 2026.09.18",
     org: "서울대학교",
     title: "EPM (Engineering Project Manager) 과정 수료",
     points: [
       "리더십 워크샵 · AI4PM 워크샵 교육 수료",
-      "AI4PM 워크샵 조별 발표 1등 — 메타 글라스 수상",
+      "AI4PM 워크샵 조별 발표 1등 — 메타 AI 글라스 수상",
       "최우수 프로젝트상 (서울대학교 공과대학장) · 우수 프로젝트상 표창 (신세계아이앤씨)",
-      "서울대학교 선후배 네트워크 구축",
+      "서울대학교 EPM 동문 네트워크 구축",
     ],
     shots: [
       { src: "assets/img/snu-epm-award-1st.jpg",  alt: "우수 프로젝트상 표창장 · 신세계아이앤씨 대표이사 (제260918-02호)" },
@@ -311,6 +335,7 @@ const PROFILE = {
     {
       period: "2015.03",
       venue: "IEEE 48th International Conference on HICSS 2015, Hawaii",
+      url: "https://ieeexplore.ieee.org/document/7070470/",
       title:
         "On PMIPv6-Based Mobility Support for Hierarchical P2P-SIP Architecture in Intelligent Transportation System",
       note: "",
@@ -318,6 +343,7 @@ const PROFILE = {
     {
       period: "2014.04",
       venue: "한국 정보처리학회",
+      url: "",
       title:
         "지능형 홈네트워크에서 퍼지 논리 기반의 쿼럼 시스템을 적용한 P2P-SIP 구조의 설계 및 분석",
       note: "대학원 졸업 논문",
@@ -325,6 +351,7 @@ const PROFILE = {
     {
       period: "2013.12",
       venue: "IEEE 9th International Conference on MSN 2013, China",
+      url: "https://ieeexplore.ieee.org/document/6726349/",
       title:
         "Design and Performance Analysis of a Novel P2P-SIP Architecture for Network-Based Mobility Support in Intelligent Home Networks",
       note: "",
@@ -332,6 +359,7 @@ const PROFILE = {
     {
       period: "2013.07",
       venue: "한국 정보처리학회",
+      url: "https://doi.org/10.3745/KTCCS.2013.2.7.293",
       title:
         "지능형 홈네트워크에서 네트워크 기반의 이동성 지원을 위한 P2P-SIP 구조의 설계 및 성능 분석",
       note: "",

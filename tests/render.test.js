@@ -109,11 +109,11 @@ function ok(cond, msg) {
   ok(!!eduCard, "EPM 교육 카드 렌더링");
   const eduText = eduCard ? eduCard.textContent : "";
   ok(eduText.includes("EPM") && eduText.includes("서울대학교"), "기관·과정명 표기");
-  ok(eduText.includes("2026.06.12") && eduText.includes("2026.09.18"), "수료 기간 표기");
-  ok(eduText.includes("메타 글라스") && eduText.includes("최우수 프로젝트상"), "1등 수상·최우수 프로젝트상 표기");
+  ok(eduText.includes("2026.03.27") && eduText.includes("2026.09.18"), "수료 기간 표기");
+  ok(eduText.includes("메타 AI 글라스") && eduText.includes("최우수 프로젝트상"), "1등 수상·최우수 프로젝트상 표기");
   ok(eduText.includes("서울대학교 공과대학장") && eduText.includes("신세계아이앤씨"),
     "수여 기관(서울대 공과대학장 / 신세계아이앤씨) 명시");
-  ok(eduText.includes("네트워크"), "선후배 네트워크 표기");
+  ok(eduText.includes("EPM 동문 네트워크"), "선후배 네트워크 표기");
   const eduShots = doc.querySelectorAll("#education .edu__shot img[data-fallback]");
   ok(eduShots.length === 4, `증빙 이미지 ${eduShots.length}개 (기대: 4)`);
 
@@ -156,6 +156,58 @@ function ok(cond, msg) {
   const navHrefs = Array.from(doc.querySelectorAll(".nav__link")).map((a) => a.getAttribute("href"));
   ok(navHrefs.every((h) => h && h.startsWith("#") && !!doc.querySelector(h)),
     "모든 네비 링크가 실제 섹션을 가리킴");
+
+  console.log();
+  console.log("[논문 링크]");
+  const paperLinks = Array.from(doc.querySelectorAll("#papers-list .paper__title a"));
+  const withUrl = window.PROFILE.papers.filter((x) => x.url).length;
+  ok(paperLinks.length === withUrl,
+    `논문 원문 링크 ${paperLinks.length}건 = url 지정 ${withUrl}건 (전체 ${window.PROFILE.papers.length}건)`);
+  const paperRows = Array.from(doc.querySelectorAll("#papers-list .paper"));
+  const rowOK = paperRows.every((row, i) => {
+    const want = window.PROFILE.papers[i].url;
+    const a = row.querySelector(".paper__title a");
+    return want ? !!a && a.getAttribute("href") === want : !a;
+  });
+  ok(rowOK, "각 논문 행의 링크가 해당 논문 url과 정확히 대응");
+  ok(paperLinks.every((a) => /^https:\/\//.test(a.getAttribute("href") || "")),
+    "논문 링크가 모두 https");
+  ok(paperLinks.every((a) => (a.getAttribute("rel") || "").includes("noopener")),
+    "논문 링크에 rel=noopener");
+
+  console.log();
+  console.log("[사이드 프로젝트]");
+  const sps = Array.from(doc.querySelectorAll("#side-list .sidepj"));
+  ok(sps.length === window.PROFILE.sideProjects.length && sps.length === 2,
+    `사이드 프로젝트 ${sps.length}건 (기대: 2)`);
+  const spText = doc.querySelector("#side-list").textContent;
+  ok(spText.includes("마법한자대모험") && spText.includes("ydmusic.pages.dev"),
+    "한자 게임 + 음악학원 사이트 모두 노출");
+  ok(spText.includes("여의도실용음악학원"),
+    "학원 상호가 실제 사이트(여의도실용음악학원)와 일치");
+
+  console.log();
+  console.log("[연락처 · 소개 서식]");
+  const cLinks = Array.from(doc.querySelectorAll(".contact__links a"));
+  ok(cLinks.length === 1 && /github\.com/.test(cLinks[0].getAttribute("href")),
+    `연락처 링크 ${cLinks.length}개 (GitHub만 유지)`);
+  ok(!/blog\.naver\.com|awsbeginner/.test(html), "Blog · AWS 자격증 앱 링크 완전 제거");
+  ok(doc.querySelectorAll(".about__lead .lb").length === 4, "소개 문단 줄바꿈 4줄");
+
+  console.log();
+  console.log("[선택 이미지 슬롯 (없으면 폴백)]");
+  const optional = window.PROFILE.certs.map((c) => c.img).filter(Boolean)
+    .concat(Array.from(doc.querySelectorAll(".career__logo img")).map((i) => i.getAttribute("src")));
+  ok(optional.length === 8, `슬롯 ${optional.length}개 선언 (자격증 6 + 회사 로고 2)`);
+  ok(doc.querySelectorAll(".career__logo-txt").length === 2, "회사 로고 이니셜 폴백 존재");
+  const badgeImgs = Array.from(doc.querySelectorAll(".cert-card__badge img[data-fallback]"));
+  ok(badgeImgs.length === 6, `자격증 배지 슬롯 ${badgeImgs.length}개 렌더링 (기대: 6)`);
+  ok(badgeImgs.every((im) => (im.getAttribute("src") || "").startsWith("assets/img/cert-")),
+    "배지 경로가 assets/img/cert- 로 지정됨");
+  ok(badgeImgs.every((im) => im.getAttribute("loading") !== "lazy"),
+    "배지는 lazy 아님 (기본 숨김 + lazy 조합 교착 방지)");
+  const pendingOpt = optional.filter((r) => !fs.existsSync(path.join(ROOT, r)));
+  console.log("      ℹ 미배치 " + pendingOpt.length + "개 — 폴백 표시 중");
 
   console.log();
   console.log("[이미지 파일 실존 점검]");
