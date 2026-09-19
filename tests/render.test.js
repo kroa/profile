@@ -103,6 +103,26 @@ function ok(cond, msg) {
   ok(papers.length === window.PROFILE.papers.length && papers.length === 4,
     `논문 ${papers.length}건 렌더링 (기대: 4)`);
 
+  console.log();
+  console.log("[교육 수료 · 서울대 EPM]");
+  const eduCard = doc.querySelector("#education .edu__card");
+  ok(!!eduCard, "EPM 교육 카드 렌더링");
+  const eduText = eduCard ? eduCard.textContent : "";
+  ok(eduText.includes("EPM") && eduText.includes("서울대학교"), "기관·과정명 표기");
+  ok(eduText.includes("2026.06.12") && eduText.includes("2026.09.18"), "수료 기간 표기");
+  ok(eduText.includes("메타 글라스") && eduText.includes("최우수 프로젝트상"), "1등 수상·최우수 프로젝트상 표기");
+  ok(eduText.includes("서울대학교 공과대학장") && eduText.includes("신세계아이앤씨"),
+    "수여 기관(서울대 공과대학장 / 신세계아이앤씨) 명시");
+  ok(eduText.includes("네트워크"), "선후배 네트워크 표기");
+  const eduShots = doc.querySelectorAll("#education .edu__shot img[data-fallback]");
+  ok(eduShots.length === 4, `증빙 이미지 ${eduShots.length}개 (기대: 4)`);
+
+  const seq = Array.from(doc.querySelectorAll("#awards *"));
+  const at = (sel) => seq.indexOf(doc.querySelector(sel));
+  ok(at(".awards") < at("#education") && at("#education") < at("#activities")
+    && at("#activities") < at("#videos"),
+    "배치 순서: 수상 → 교육수료 → 세미나/해외활동 → 홍보영상");
+
   console.log("\n[사진 슬롯]");
   ok(!!doc.querySelector("#heroPhoto"), "히어로 프로필 사진 요소 존재");
   const projMedia = doc.querySelectorAll("#timeline .timeline__item .card-media");
@@ -148,9 +168,11 @@ function ok(cond, msg) {
         []
       )
     )
+    .concat(((window.PROFILE.education || {}).shots || []).map((x) => x.src))
+    .concat((window.PROFILE.videos || []).map((x) => x.thumb))
     .filter(Boolean);
-  ok(refs.length === 21,
-    `참조 이미지 ${refs.length}개 (기대: 21 = 프로필 1 + 프로젝트 8 + AI 2 + 활동 10)`);
+  ok(refs.length === 27,
+    `참조 이미지 ${refs.length}개 (기대: 27 = 프로필 1 + 프로젝트 8 + AI 2 + 활동 10 + EPM 4 + 영상 2)`);
   const missing = refs.filter((r) => !fs.existsSync(path.join(ROOT, r)));
   ok(missing.length === 0,
     missing.length ? "누락된 이미지 파일: " + missing.join(", ")
@@ -166,13 +188,15 @@ function ok(cond, msg) {
     "신규 자격증 취득일 정확히 표시");
 
   console.log("\n[홍보 영상 순서 · URL]");
-  const videoLinks = Array.from(doc.querySelectorAll(".awards__list--links a"));
-  ok(videoLinks.length === 2, "홍보 영상 링크 2개");
+  const videoLinks = Array.from(doc.querySelectorAll("#videos a.video-card"));
+  ok(videoLinks.length === 2, "홍보 영상 카드 2개");
+  ok(doc.querySelectorAll("#videos .video-card__thumb img[data-fallback]").length === 2,
+    "영상 카드 썸네일 2개");
   ok(/duj8Ejku9gQ/.test(videoLinks[0].getAttribute("href")) && videoLinks[0].textContent.includes("MS"),
     "첫 번째 = MS 협업 영상(duj8Ejku9gQ)로 교체·순서 변경");
   ok(/R0P6jXCw4ic/.test(videoLinks[1].getAttribute("href")),
     "두 번째 = 소프트웨어 개발 직무 소개 영상");
-  ok(!/c317VLcHiHk/.test(html), "기존 MS 영상 URL(c317VLcHiHk) 완전 제거");
+  ok(!/c317VLcHiHk/.test(html + dataJs + mainJs), "기존 MS 영상 URL(c317VLcHiHk) 완전 제거");
 
   console.log("\n[핵심 콘텐츠 반영]");
   const body = doc.body.textContent;

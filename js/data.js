@@ -271,6 +271,41 @@ const PROFILE = {
     },
   ],
 
+  /* ---------- 교육 수료 (서울대 EPM) ---------- */
+  education: {
+    period: "2026.06.12 – 2026.09.18",
+    org: "서울대학교",
+    title: "EPM (Engineering Project Manager) 과정 수료",
+    points: [
+      "리더십 워크샵 · AI4PM 워크샵 교육 수료",
+      "AI4PM 워크샵 조별 발표 1등 — 메타 글라스 수상",
+      "최우수 프로젝트상 (서울대학교 공과대학장) · 우수 프로젝트상 표창 (신세계아이앤씨)",
+      "서울대학교 선후배 네트워크 구축",
+    ],
+    shots: [
+      { src: "assets/img/snu-epm-award-1st.jpg",  alt: "우수 프로젝트상 표창장 · 신세계아이앤씨 대표이사 (제260918-02호)" },
+      { src: "assets/img/snu-epm-award-best.jpg", alt: "최우수 프로젝트상 상장 · 서울대학교 공과대학장 (제30-33호)" },
+      { src: "assets/img/snu-epm-cert-1.jpg",     alt: "Certified Engineering Project Manager 인증 명패 · 서울대학교 공과대학 (No. 03006)" },
+      { src: "assets/img/snu-epm-cert-2.jpg",     alt: "엔지니어링 프로젝트 매니지먼트 과정 이수증서 · 서울대학교 (제30-07호)" },
+    ],
+  },
+
+  /* ---------- 사내외 홍보 영상 ---------- */
+  videos: [
+    {
+      title: "MS 협업 태블릿 POS 소개 영상",
+      desc: "Microsoft와 협업한 국내 백화점 최초 윈도우 태블릿 POS 도입 사례",
+      url: "https://www.youtube.com/watch?v=duj8Ejku9gQ",
+      thumb: "assets/img/ms_youtube.jpg",
+    },
+    {
+      title: "소프트웨어 개발 직무 소개 영상",
+      desc: "신세계아이앤씨 소프트웨어 개발 직무 소개",
+      url: "https://www.youtube.com/watch?v=R0P6jXCw4ic&t=3s",
+      thumb: "assets/img/inc_youtube.jpg",
+    },
+  ],
+
   /* ---------- 논문 (게재 최신순) ---------- */
   papers: [
     {
@@ -317,7 +352,7 @@ const PROFILE = {
     {
       period: "2017.04",
       title: "SuperSmart 도입 검토 출장 (이스라엘)",
-      desc: "차별화된 쇼핑 경험을 위한 신기술 솔루션 검토, 신세계·이마트 워크숍 추진",
+      desc: "차별화된 쇼핑 경험을 위한 신기술 솔루션 검토, 신세계·이마트 워크샵 추진",
       imgs: [
         { src: "assets/img/act-supersmart-1.png", alt: "SuperSmart가 적용된 이스라엘 현지 매장" },
         { src: "assets/img/act-supersmart-2.png", alt: "SuperSmart 스캔 게이트 센서" },

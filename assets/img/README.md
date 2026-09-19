@@ -34,5 +34,23 @@
 | `act-retailtech-1.jpg` | Retail Tech Japan 2018 – 전시 부스 (첨부 9번) |
 | `act-retailtech-2.jpg` | Retail Tech Japan 2018 – 제품 시연 (첨부 10번) |
 
+
+## 교육 수료 · 홍보 영상
+
+| 파일명 | 내용 |
+|---|---|
+| `snu-epm-award-1st.jpg` | 우수 프로젝트상 표창장 · 신세계아이앤씨 대표이사 (제260918-02호) |
+| `snu-epm-award-best.jpg` | 최우수 프로젝트상 상장 · 서울대학교 공과대학장 (제30-33호) |
+| `snu-epm-cert-1.jpg` | Certified Engineering Project Manager 인증 명패 (No. 03006, 가로형) |
+| `snu-epm-cert-2.jpg` | 엔지니어링 프로젝트 매니지먼트 과정 이수증서 (제30-07호, 세로형) |
+| `ms_youtube.jpg` | MS 협업 태블릿 POS 소개 영상 썸네일 |
+| `inc_youtube.jpg` | 소프트웨어 개발 직무 소개 영상 썸네일 |
+
+> ⚠ `snu-epm-cert-2.jpg` 는 원본에 **생년월일**이 인쇄되어 있어 해당 줄을 마스킹한 상태로 게시합니다.
+> 증빙 사진을 교체할 때는 생년월일·주소 등 개인정보가 보이지 않는지 반드시 확인하세요.
+>
+> 원본 한글 파일명(서울대이수증서.jpg 등)은 URL 인코딩 문제를 피하기 위해 ASCII로 변경했고,
+> 웹 배포용으로 가로 1280px·JPEG로 최적화했습니다 (합계 10.8MB → 0.7MB).
+
 > 파일명은 [js/data.js](../../js/data.js) 기준입니다 — 히어로 사진은 `profilePhoto`, 프로젝트·AI 카드는 `img`, 세미나·해외 활동은 `imgs` 배열과 일치합니다.
 > 다른 이름을 쓰고 싶으면 `data.js`의 경로만 바꾸면 됩니다.

@@ -136,6 +136,56 @@
       .join("");
   }
 
+  /* ---------- Render: Education (SNU EPM) ---------- */
+  function renderEducation() {
+    const wrap = $("#education");
+    if (!wrap || !window.PROFILE || !PROFILE.education) return;
+    const e = PROFILE.education;
+    const points = (e.points || []).map((pt) => `<li>${esc(pt)}</li>`).join("");
+    const shots = (e.shots || [])
+      .map(
+        (sh) => `<a class="edu__shot" href="${esc(sh.src)}" target="_blank" rel="noopener noreferrer">
+            <img src="${esc(sh.src)}" alt="${esc(sh.alt)}" loading="lazy" data-fallback />
+            <span class="edu__shot-glyph" aria-hidden="true">🏅</span>
+          </a>`
+      )
+      .join("");
+    wrap.innerHTML = `
+      <article class="edu__card reveal" data-reveal>
+        <div class="edu__body">
+          <div class="edu__meta">
+            <span class="edu__period">${esc(e.period)}</span>
+            <span class="edu__org">${esc(e.org)}</span>
+          </div>
+          <h4 class="edu__title">${esc(e.title)}</h4>
+          <ul class="edu__points">${points}</ul>
+        </div>
+        <div class="edu__shots">${shots}</div>
+      </article>`;
+  }
+
+  /* ---------- Render: Promo videos ---------- */
+  function renderVideos() {
+    const wrap = $("#videos");
+    if (!wrap || !window.PROFILE || !PROFILE.videos) return;
+    wrap.innerHTML = PROFILE.videos
+      .map(
+        (v, i) => `
+        <a class="video-card reveal" data-reveal data-reveal-delay="${i}"
+           href="${esc(v.url)}" target="_blank" rel="noopener noreferrer">
+          <span class="video-card__thumb">
+            <img src="${esc(v.thumb)}" alt="" loading="lazy" data-fallback />
+            <span class="video-card__play" aria-hidden="true">▶</span>
+          </span>
+          <span class="video-card__body">
+            <span class="video-card__title">${esc(v.title)} <span class="ext" aria-hidden="true">↗</span></span>
+            <span class="video-card__desc">${esc(v.desc)}</span>
+          </span>
+        </a>`
+      )
+      .join("");
+  }
+
   /* ---------- Render: Activities ---------- */
   function renderActivities() {
     const wrap = $("#activities");
@@ -320,7 +370,9 @@
     renderSkills();
     renderCerts();
     renderPapers();
+    renderEducation();
     renderActivities();
+    renderVideos();
     initHeroPhoto();
     initImageFallback();
     initReveal();
