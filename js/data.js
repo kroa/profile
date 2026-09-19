@@ -202,11 +202,11 @@ const PROFILE = {
       name: "Cloud · AWS",
       icon: "☁",
       items: [
-        { label: "EKS · EC2 · Lambda", note: "" },
+        { label: "EKS · EC2", note: "" },
         { label: "Aurora MySQL / PostgreSQL", note: "" },
         { label: "Redshift · Spectrum · Federated", note: "" },
         { label: "S3 · EFS · SNS/SQS", note: "" },
-        { label: "API Gateway · DMS · Secret Mgr", note: "" },
+        { label: "API Gateway · DMS · Secret Manager", note: "" },
       ],
     },
     {
@@ -214,17 +214,18 @@ const PROFILE = {
       icon: "⚙",
       items: [
         { label: "GitLab · Jenkins · TFS", note: "" },
-        { label: "CI/CD 파이프라인", note: "그룹사 최초" },
-        { label: "Datadog", note: "End-to-End · 3년" },
+        { label: "CI/CD 파이프라인", note: "" },
+        { label: "Datadog", note: "" },
         { label: "Redis · AlertNow", note: "" },
       ],
     },
     {
-      name: "Data · BI",
+      name: "Data · DW · BI",
       icon: "▦",
       items: [
         { label: "Aurora / RDS MySQL", note: "" },
         { label: "Redshift 분석계", note: "" },
+        { label: "Metastream", note: "" },
         { label: "Tableau (BI)", note: "" },
       ],
     },
