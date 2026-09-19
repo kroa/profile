@@ -228,7 +228,12 @@ function ok(cond, msg) {
     "배지 경로가 assets/img/cert- 로 지정됨");
   ok(badgeImgs.every((im) => im.getAttribute("loading") !== "lazy"),
     "배지는 lazy 아님 (기본 숨김 + lazy 조합 교착 방지)");
+  ok(Array.from(doc.querySelectorAll(".career__logo img")).every((im) => im.getAttribute("loading") !== "lazy"),
+    "로고는 lazy 아님 (기본 숨김 + lazy 조합 교착 방지)");
   const pendingOpt = optional.filter((r) => !fs.existsSync(path.join(ROOT, r)));
+  ok(pendingOpt.length === 0,
+    pendingOpt.length ? "미배치 슬롯: " + pendingOpt.join(", ")
+                      : "로고·배지 8개 파일 모두 존재");
   console.log("      ℹ 미배치 " + pendingOpt.length + "개 — 폴백 표시 중");
 
   console.log();

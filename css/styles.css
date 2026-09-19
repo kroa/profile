@@ -448,29 +448,26 @@ img { max-width: 100%; display: block; }
   padding: 3px 12px; border-radius: 999px; letter-spacing: 0.05em;
 }
 .career__logo {
-  position: relative;
-  display: inline-grid; place-items: center;
-  width: 34px; height: 34px;
+  display: inline-flex; align-items: center; justify-content: center;
+  height: 30px; min-width: 30px;
+  padding: 0 9px;
   margin-right: 10px;
-  vertical-align: -9px;
-  border-radius: 9px;
-  overflow: hidden;
+  vertical-align: -8px;
+  border-radius: 8px;
   border: 1px solid var(--border);
   background: var(--surface-2);
+  transition: background 0.3s var(--ease), border-color 0.3s;
 }
-.career__logo img {
-  position: absolute; inset: 0;
-  width: 100%; height: 100%;
-  object-fit: contain; padding: 4px;
-  opacity: 0; transition: opacity 0.4s var(--ease);
-}
-.career__logo img.is-loaded { opacity: 1; }
+/* 로고가 실제로 로드되면 흰 칩으로 — 브랜드 색이 다크 배경에서 죽지 않도록 */
+.career__logo.is-ready { background: #fff; border-color: rgba(255,255,255,0.55); }
+.career__logo img { display: none; height: 17px; width: auto; max-width: 150px; }
+.career__logo.is-ready img { display: block; }
 .career__logo-txt {
   font-size: 0.86rem; font-weight: 800;
   background: var(--grad-gold);
   -webkit-background-clip: text; background-clip: text; color: transparent;
 }
-.career__logo img.is-loaded ~ .career__logo-txt { opacity: 0; }
+.career__logo.is-ready .career__logo-txt { display: none; }
 
 .career__company { font-size: 1.4rem; font-weight: 800; }
 .career__role { color: var(--gold-2); margin-top: 4px; font-size: 0.98rem; }

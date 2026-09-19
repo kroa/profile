@@ -381,9 +381,10 @@
       const reveal = () => {
         img.classList.add("is-loaded");
         // 배지는 기본 숨김 — 실제로 로드된 경우에만 노출(:has 미지원 브라우저 대응)
-        const badge = img.parentNode;
-        if (badge && badge.classList && badge.classList.contains("cert-card__badge")) {
-          badge.classList.add("is-ready");
+        const box = img.parentNode;
+        if (box && box.classList &&
+            (box.classList.contains("cert-card__badge") || box.classList.contains("career__logo"))) {
+          box.classList.add("is-ready");
         }
       };
       const hide = () => img.classList.remove("is-loaded");
