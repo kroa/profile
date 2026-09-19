@@ -20,6 +20,8 @@
 ├── css/styles.css        # 디자인 시스템
 ├── js/data.js            # 콘텐츠 데이터 (여기만 고치면 내용 갱신)
 ├── js/main.js            # 렌더링 & 인터랙션
+├── assets/img/           # 사진 (파일명 규칙은 assets/img/README.md 참고)
+├── tests/                # jsdom 렌더링 테스트 (배포 제외)
 └── .nojekyll             # GitHub Pages Jekyll 처리 비활성화
 ```
 

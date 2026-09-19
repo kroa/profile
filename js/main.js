@@ -106,7 +106,7 @@
     wrap.innerHTML = PROFILE.certs
       .map(
         (c, i) => `
-        <div class="cert-card reveal" data-reveal data-reveal-delay="${i % 2}">
+        <div class="cert-card reveal" data-reveal data-reveal-delay="${i % 2}" data-vendor="${esc(c.vendor || "")}">
           <span class="cert-card__grade">${esc(c.grade)}</span>
           <h3 class="cert-card__name">${esc(c.name)}</h3>
           <div class="cert-card__dates">
@@ -117,21 +117,56 @@
       .join("");
   }
 
+  /* ---------- Render: Papers ---------- */
+  function renderPapers() {
+    const wrap = $("#papers-list");
+    if (!wrap || !window.PROFILE || !PROFILE.papers) return;
+    wrap.innerHTML = PROFILE.papers
+      .map(
+        (p, i) => `
+        <li class="paper reveal" data-reveal data-reveal-delay="${i % 2}">
+          <div class="paper__meta">
+            <span class="paper__period">${esc(p.period)}</span>
+            <span class="paper__venue">${esc(p.venue)}</span>
+            ${p.note ? `<span class="paper__note">${esc(p.note)}</span>` : ""}
+          </div>
+          <p class="paper__title">${esc(p.title)}</p>
+        </li>`
+      )
+      .join("");
+  }
+
   /* ---------- Render: Activities ---------- */
   function renderActivities() {
     const wrap = $("#activities");
     if (!wrap || !window.PROFILE) return;
     wrap.innerHTML = PROFILE.activities
-      .map(
-        (a, i) => `
-        <div class="activity reveal" data-reveal data-reveal-delay="${i % 2}">
+      .map((a, i) => {
+        const shots =
+          a.imgs && a.imgs.length
+            ? `<div class="activity__shots">${a.imgs
+                .map(
+                  (im, n) => {
+                    const src = typeof im === "string" ? im : im.src;
+                    const alt = (typeof im === "string" ? "" : im.alt) || `${a.title} 사진 ${n + 1}`;
+                    return `<span class="activity__shot">
+                    <img src="${esc(src)}" alt="${esc(alt)}" loading="lazy" data-fallback />
+                    <span class="activity__shot-glyph" aria-hidden="true">📷</span>
+                  </span>`;
+                  }
+                )
+                .join("")}</div>`
+            : "";
+        return `
+        <div class="activity${a.imgs && a.imgs.length ? " has-shots" : ""} reveal" data-reveal data-reveal-delay="${i % 2}">
           <span class="activity__period">${esc(a.period)}</span>
           <div>
             <div class="activity__title">${esc(a.title)}</div>
             <div class="activity__desc">${esc(a.desc)}</div>
+            ${shots}
           </div>
-        </div>`
-      )
+        </div>`;
+      })
       .join("");
   }
 
@@ -229,9 +264,9 @@
           entries.forEach((e) => {
             if (e.isIntersecting) {
               const id = e.target.id;
-              navLinks.forEach((l) =>
-                l.classList.toggle("is-active", l.getAttribute("href") === "#" + id)
-              );
+              const match = navLinks.find((l) => l.getAttribute("href") === "#" + id);
+              if (!match) return; // 네비에 없는 섹션(#side)에서는 직전 하이라이트 유지
+              navLinks.forEach((l) => l.classList.toggle("is-active", l === match));
             }
           });
         },
@@ -284,6 +319,7 @@
     renderAI();
     renderSkills();
     renderCerts();
+    renderPapers();
     renderActivities();
     initHeroPhoto();
     initImageFallback();

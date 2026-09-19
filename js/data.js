@@ -234,23 +234,71 @@ const PROFILE = {
   certs: [
     {
       name: "AWS Advanced Networking – Specialty",
+      vendor: "AWS",
       grade: "Specialty",
       issued: "2024.12.26",
     },
     {
       name: "AWS Certified Solutions Architect – Professional",
+      vendor: "AWS",
       grade: "Professional",
       issued: "2022.11.13",
     },
     {
       name: "AWS Certified Solutions Architect – Associate",
+      vendor: "AWS",
       grade: "Associate",
       issued: "2022.07.03",
     },
     {
+      name: "Google Cloud Certified – Associate Cloud Engineer",
+      vendor: "GCP",
+      grade: "Associate",
+      issued: "2021.02.18",
+    },
+    {
       name: "AWS Certified Cloud Practitioner",
+      vendor: "AWS",
       grade: "Foundational",
       issued: "2021.01.30",
+    },
+    {
+      name: "Microsoft Certified: Azure Fundamentals",
+      vendor: "Azure",
+      grade: "Fundamentals",
+      issued: "2021.01.26",
+    },
+  ],
+
+  /* ---------- 논문 (게재 최신순) ---------- */
+  papers: [
+    {
+      period: "2015.03",
+      venue: "IEEE 48th International Conference on HICSS 2015, Hawaii",
+      title:
+        "On PMIPv6-Based Mobility Support for Hierarchical P2P-SIP Architecture in Intelligent Transportation System",
+      note: "",
+    },
+    {
+      period: "2014.04",
+      venue: "한국 정보처리학회",
+      title:
+        "지능형 홈네트워크에서 퍼지 논리 기반의 쿼럼 시스템을 적용한 P2P-SIP 구조의 설계 및 분석",
+      note: "대학원 졸업 논문",
+    },
+    {
+      period: "2013.12",
+      venue: "IEEE 9th International Conference on MSN 2013, China",
+      title:
+        "Design and Performance Analysis of a Novel P2P-SIP Architecture for Network-Based Mobility Support in Intelligent Home Networks",
+      note: "",
+    },
+    {
+      period: "2013.07",
+      venue: "한국 정보처리학회",
+      title:
+        "지능형 홈네트워크에서 네트워크 기반의 이동성 지원을 위한 P2P-SIP 구조의 설계 및 성능 분석",
+      note: "",
     },
   ],
 
@@ -260,26 +308,46 @@ const PROFILE = {
       period: "2018.03",
       title: "Retail Tech Japan 2018 전시회 참관",
       desc: "무인 점포·리테일 혁신 제품 견학 및 업계 네트워크 형성",
+      imgs: [
+        { src: "assets/img/act-retailtech-1.jpg", alt: "Retail Tech Japan 2018 전시 부스" },
+        { src: "assets/img/act-retailtech-2.jpg", alt: "Retail Tech Japan 2018 제품 시연 장면" },
+      ],
     },
     {
       period: "2017.04",
       title: "SuperSmart 도입 검토 출장 (이스라엘)",
-      desc: "차별화된 쇼핑 경험을 위한 신기술 솔루션 검토, 신세계·이마트 워크샵 추진",
+      desc: "차별화된 쇼핑 경험을 위한 신기술 솔루션 검토, 신세계·이마트 워크숍 추진",
+      imgs: [
+        { src: "assets/img/act-supersmart-1.png", alt: "SuperSmart가 적용된 이스라엘 현지 매장" },
+        { src: "assets/img/act-supersmart-2.png", alt: "SuperSmart 스캔 게이트 센서" },
+      ],
     },
     {
       period: "2017.03",
       title: "EuroShop 2017 참관 & SuperSmart CEO 미팅",
       desc: "유통 전문 박람회 견학 및 이스라엘 SuperSmart 도입 검토",
+      imgs: [
+        { src: "assets/img/act-euroshop-1.png", alt: "EuroShop 2017 전시 부스 전경" },
+        { src: "assets/img/act-euroshop-2.png", alt: "EuroShop 2017 셀프계산대 제품" },
+      ],
     },
     {
       period: "2017.03",
       title: "신세계그룹 All About POS 세미나 발표",
       desc: "‘POS H/W 아키텍처의 이해’ 주제 발표 진행",
+      imgs: [
+        { src: "assets/img/act-allaboutpos-1.png", alt: "All About POS 세미나 발표 장면" },
+        { src: "assets/img/act-allaboutpos-2.png", alt: "All About POS 세미나 강연장 전경" },
+      ],
     },
     {
       period: "2015.09",
       title: "핀란드 오울루 해외 출장",
       desc: "전세계 유일 5인치 Windows Tablet POS 장비 도입 위해 제조사 방문",
+      imgs: [
+        { src: "assets/img/act-oulu1.png", alt: "도입 검토한 5인치 Windows Tablet POS 장비" },
+        { src: "assets/img/act-oulu2.png", alt: "핀란드 오울루 제조사 현지 개발실" },
+      ],
     },
   ],
 };
