@@ -299,7 +299,7 @@ const PROFILE = {
   education: {
     period: "2026.03.27 – 2026.09.18",
     org: "서울대학교",
-    title: "EPM (Engineering Project Manager) 과정 수료",
+    title: "서울대학교 EPM (Engineering Project Manager) 과정 수료",
     points: [
       "리더십 워크샵 · AI4PM 워크샵 교육 수료",
       "AI4PM 워크샵 조별 발표 1등 — 메타 AI 글라스 수상",
@@ -336,6 +336,7 @@ const PROFILE = {
       period: "2015.03",
       venue: "IEEE 48th International Conference on HICSS 2015, Hawaii",
       url: "https://ieeexplore.ieee.org/document/7070470/",
+      site: "IEEE Xplore",
       title:
         "On PMIPv6-Based Mobility Support for Hierarchical P2P-SIP Architecture in Intelligent Transportation System",
       note: "",
@@ -343,7 +344,8 @@ const PROFILE = {
     {
       period: "2014.04",
       venue: "한국 정보처리학회",
-      url: "",
+      url: "https://doi.org/10.3745/KTCCS.2014.3.4.115",
+      site: "KIPS · DOI",
       title:
         "지능형 홈네트워크에서 퍼지 논리 기반의 쿼럼 시스템을 적용한 P2P-SIP 구조의 설계 및 분석",
       note: "대학원 졸업 논문",
@@ -352,6 +354,7 @@ const PROFILE = {
       period: "2013.12",
       venue: "IEEE 9th International Conference on MSN 2013, China",
       url: "https://ieeexplore.ieee.org/document/6726349/",
+      site: "IEEE Xplore",
       title:
         "Design and Performance Analysis of a Novel P2P-SIP Architecture for Network-Based Mobility Support in Intelligent Home Networks",
       note: "",
@@ -360,6 +363,7 @@ const PROFILE = {
       period: "2013.07",
       venue: "한국 정보처리학회",
       url: "https://doi.org/10.3745/KTCCS.2013.2.7.293",
+      site: "KIPS · DOI",
       title:
         "지능형 홈네트워크에서 네트워크 기반의 이동성 지원을 위한 P2P-SIP 구조의 설계 및 성능 분석",
       note: "",

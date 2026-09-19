@@ -170,6 +170,28 @@ function ok(cond, msg) {
     return want ? !!a && a.getAttribute("href") === want : !a;
   });
   ok(rowOK, "각 논문 행의 링크가 해당 논문 url과 정확히 대응");
+  const srcs = Array.from(doc.querySelectorAll("#papers-list .paper__src"));
+  ok(srcs.length === withUrl, `출처 표시 ${srcs.length}건 (링크 있는 논문 수와 일치)`);
+  ok(srcs.every((a) => {
+    const site = a.querySelector(".paper__site");
+    const url = a.querySelector(".paper__url");
+    if (!site || !url) return false;
+    const href = a.getAttribute("href") || "";
+    return site.textContent.trim() !== "" &&
+      href.replace(/^https?:\/\//, "").replace(/\/$/, "") === url.textContent.trim();
+  }), "출처에 사이트명 + 실제 href와 일치하는 주소 표시");
+  ok(srcs.every((a) => (a.getAttribute("rel") || "").includes("noopener")), "출처 링크에 rel=noopener");
+
+  console.log();
+  console.log("[경력 · 회사 소개]");
+  const about = doc.querySelector(".career__about");
+  ok(!!about, "지어소프트 회사 소개 블록 존재");
+  const aboutTxt = about ? about.textContent : "";
+  ok(aboutTxt.includes("오아시스몰") && aboutTxt.includes("새벽배송"), "오아시스몰·새벽배송 언급");
+  ok(aboutTxt.includes("광고") && aboutTxt.includes("AI 무인 계산"), "광고 사업·리테일 AI 무인계산 언급");
+  ok(doc.querySelector(".edu__title").textContent.includes("서울대학교 EPM"),
+    "교육 수료 제목에 서울대학교 포함");
+  ok(doc.querySelectorAll(".edu__org").length === 0, "제목에 기관명이 있으면 org 칩 중복 미노출");
   ok(paperLinks.every((a) => /^https:\/\//.test(a.getAttribute("href") || "")),
     "논문 링크가 모두 https");
   ok(paperLinks.every((a) => (a.getAttribute("rel") || "").includes("noopener")),

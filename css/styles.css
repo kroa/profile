@@ -476,6 +476,30 @@ img { max-width: 100%; display: block; }
 .career__role { color: var(--gold-2); margin-top: 4px; font-size: 0.98rem; }
 .career__role strong { color: var(--text); }
 .career__desc { color: var(--muted); margin-top: 12px; font-size: 0.96rem; }
+.career__about {
+  margin-top: 14px;
+  padding: 14px 16px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  border-left: 2px solid var(--gold-deep);
+  background: var(--surface);
+  color: var(--text-soft);
+  font-size: 0.92rem;
+  line-height: 1.65;
+}
+.career__about strong { color: var(--gold-2); font-weight: 700; }
+.career__about-tag {
+  display: inline-block;
+  margin-right: 8px;
+  padding: 1px 9px;
+  border-radius: 999px;
+  border: 1px solid var(--border-strong);
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  vertical-align: 1px;
+}
 
 /* ---------- Card media (사진 / 플레이스홀더) ---------- */
 .card-media {
@@ -843,6 +867,24 @@ img { max-width: 100%; display: block; }
   border: 1px solid var(--gold-deep); color: var(--gold-2);
 }
 .paper__title { font-size: 1.02rem; font-weight: 600; color: var(--text); line-height: 1.6; }
+.paper__title a { border-bottom: 1px solid rgba(233,200,119,0.35); transition: color 0.25s, border-color 0.25s; }
+.paper__title a:hover { color: var(--gold-2); border-color: var(--gold); }
+.paper__src {
+  display: inline-flex; align-items: center; flex-wrap: wrap; gap: 8px;
+  margin-top: 10px;
+  padding: 5px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  transition: border-color 0.25s, background 0.25s;
+}
+.paper__src:hover { border-color: var(--gold-deep); background: var(--surface-2); }
+.paper__site { font-size: 0.74rem; font-weight: 700; color: var(--gold-2); }
+.paper__url {
+  font-family: var(--mono); font-size: 0.74rem; color: var(--muted);
+  word-break: break-all;
+}
+.paper__src:hover .paper__url { color: var(--text-soft); }
 
 /* ---------- Side project ---------- */
 .sidepjs { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }

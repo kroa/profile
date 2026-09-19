@@ -9,6 +9,11 @@
   const esc = (s) =>
     String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 
+  /* 주소 표시용 축약: 프로토콜·끝 슬래시 제거 */
+  function prettyUrl(u) {
+    return String(u).replace(/^https?:\/\//, "").replace(/\/$/, "");
+  }
+
   /* 카드 미디어(사진) — 파일이 있으면 사진, 없으면 그라데이션+아이콘 플레이스홀더 */
   function mediaHTML(item, alt, wide) {
     const accent = item.accent || "pos";
@@ -136,6 +141,14 @@
               ? `<a href="${esc(p.url)}" target="_blank" rel="noopener noreferrer">${esc(p.title)} <span class="ext" aria-hidden="true">↗</span></a>`
               : esc(p.title)
           }</p>
+          ${
+            p.url
+              ? `<a class="paper__src" href="${esc(p.url)}" target="_blank" rel="noopener noreferrer">
+                  <span class="paper__site">${esc(p.site || "원문")}</span>
+                  <span class="paper__url">${esc(prettyUrl(p.url))}</span>
+                </a>`
+              : ""
+          }
         </li>`
       )
       .join("");
@@ -160,7 +173,7 @@
         <div class="edu__body">
           <div class="edu__meta">
             <span class="edu__period">${esc(e.period)}</span>
-            <span class="edu__org">${esc(e.org)}</span>
+            ${e.org && e.title.indexOf(e.org) === -1 ? `<span class="edu__org">${esc(e.org)}</span>` : ""}
           </div>
           <h4 class="edu__title">${esc(e.title)}</h4>
           <ul class="edu__points">${points}</ul>
