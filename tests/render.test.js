@@ -183,7 +183,7 @@ function ok(cond, msg) {
   ok(srcs.every((a) => (a.getAttribute("rel") || "").includes("noopener")), "출처 링크에 rel=noopener");
 
   console.log();
-  console.log("[소개 사진 · 상담 · 경진대회]");
+  console.log("[소개 사진 · 상담 · 수상]");
   const aboutPhoto = doc.querySelector(".about__photo img");
   ok(!!aboutPhoto && (aboutPhoto.getAttribute("src") || "").includes("idcard"),
     "소개에 사원증 사진 노출");
@@ -201,11 +201,12 @@ function ok(cond, msg) {
     "배치: 교육수료 → 채용·직무상담 → 세미나/해외활동");
 
   const awardsTxt = doc.querySelector(".awards").textContent;
-  ok(awardsTxt.includes("클라우드 자격증 노하우 경진대회") && awardsTxt.includes("2021.09.16"),
-    "클라우드 자격증 경진대회 우승(2021.09.16) 표기");
+  ok(awardsTxt.includes("클라우드 자격증 노하우 공유 대회") && awardsTxt.includes("2021.09.16"),
+    "클라우드 자격증 노하우 공유 대회 우승(2021.09.16) 표기");
   ok(awardsTxt.includes("추신수") && awardsTxt.includes("최정"), "사인볼 부상 표기");
-  const cloudShot = doc.querySelector(".awards__shot img");
-  ok(!!cloudShot && (cloudShot.getAttribute("src") || "").includes("cloud"), "경진대회 기념 사진 노출");
+  ok(!/경진대회/.test(html), "구 명칭(경진대회) 완전 제거");
+  ok(doc.querySelectorAll(".awards__shot").length === 0, "수상 카드에서 기념 사진 제외됨");
+  ok(!/cloud\.jpg/.test(html + dataJs + mainJs), "cloud.jpg 참조 완전 제거");
   ok(doc.querySelectorAll(".awards .awards__group").length === 3, "수상 카드 3개");
 
   console.log();
