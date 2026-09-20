@@ -215,6 +215,13 @@
           <span class="sidepj__body">
             <span class="sidepj__title">${esc(sp.title)} <span class="ext" aria-hidden="true">↗</span></span>
             <span class="sidepj__desc">${esc(sp.desc)}</span>
+            ${
+              sp.points && sp.points.length
+                ? `<span class="sidepj__points">${sp.points
+                    .map((pt) => `<span class="sidepj__point">${esc(pt)}</span>`)
+                    .join("")}</span>`
+                : ""
+            }
             <span class="sidepj__repo">${esc(sp.label)}</span>
           </span>
         </a>`

@@ -188,6 +188,14 @@ function ok(cond, msg) {
   ok(!!aboutPhoto && (aboutPhoto.getAttribute("src") || "").includes("idcard"),
     "소개에 사원증 사진 노출");
   ok((aboutPhoto && aboutPhoto.getAttribute("alt") || "").trim() !== "", "사원증 사진에 alt 존재");
+  ok(doc.querySelectorAll(".about__photo").length === 1, "사원증 사진 중복 없이 1개");
+  ok(!!doc.querySelector(".about__top .about__photo") && !!doc.querySelector(".about__top .about__lead"),
+    "소개: 사진과 본문이 같은 2열 행에 배치");
+  ok(!!doc.querySelector(".about > .about__pillars"), "강점 카드는 전체 폭 행으로 분리");
+  ok(doc.querySelectorAll(".career__period .career__logo").length === 2,
+    "경력 로고 2개가 좌측(기간) 컬럼에 배치");
+  ok(doc.querySelectorAll(".career__company .career__logo").length === 0,
+    "회사명 안에는 로고가 남아있지 않음");
 
   const mentor = doc.querySelectorAll("#mentoring .activity");
   ok(mentor.length === window.PROFILE.mentoring.length && mentor.length === 2,
@@ -234,6 +242,16 @@ function ok(cond, msg) {
     "한자 게임 + 음악학원 사이트 모두 노출");
   ok(spText.includes("여의도실용음악학원"),
     "학원 상호가 실제 사이트(여의도실용음악학원)와 일치");
+  ok(spText.includes("운영 사이트") && !spText.includes("음악학원 소개 사이트"),
+    "'소개 사이트'가 아니라 '운영 사이트'로 표기");
+  const spPoints = Array.from(doc.querySelectorAll("#side-list .sidepj__point")).map((e) => e.textContent);
+  ok(spPoints.length === 3, `학원 사이트 기능 ${spPoints.length}건 노출 (기대: 3)`);
+  ok(spPoints.some((t) => t.includes("기타 연습실") && t.includes("코드")),
+    "기타 연습실(키 변경·코드) 기능 표기");
+  ok(spPoints.some((t) => t.includes("드럼 연습실") && t.includes("악보")),
+    "드럼 연습실(연주→악보) 기능 표기");
+  ok(spPoints.some((t) => t.includes("수강생") && t.includes("관리")),
+    "수강생 이용·원장 관리 기능 표기");
 
   console.log();
   console.log("[연락처 · 소개 서식]");
