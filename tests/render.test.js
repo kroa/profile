@@ -196,6 +196,9 @@ function ok(cond, msg) {
     "경력 로고 2개가 좌측(기간) 컬럼에 배치");
   ok(doc.querySelectorAll(".career__company .career__logo").length === 0,
     "회사명 안에는 로고가 남아있지 않음");
+  ok(Array.from(doc.querySelectorAll(".career__period")).every(
+    (el) => el.lastElementChild && el.lastElementChild.classList.contains("career__logo")),
+    "로고가 기간 텍스트 아래(컬럼 마지막 요소)에 배치");
 
   const mentor = doc.querySelectorAll("#mentoring .activity");
   ok(mentor.length === window.PROFILE.mentoring.length && mentor.length === 2,
@@ -268,7 +271,15 @@ function ok(cond, msg) {
   ok(spLinks.some((a) => /github\.com\/kroa\/magichanjaadventure/.test(a.getAttribute("href") || "")),
     "마법한자대모험 GitHub 링크 유지");
   ok(spLinks.every((a) => (a.getAttribute("rel") || "").includes("noopener")), "사이드 링크에 rel=noopener");
-  ok(doc.querySelectorAll("#side-list a a").length === 0, "사이드 카드에 중첩 링크 없음");
+  ok(doc.querySelectorAll("#side-list > a").length === 0, "사이드 카드 루트가 링크가 아님");
+  ok(Array.from(doc.querySelectorAll("#side-list .sidepj")).every((el) => el.tagName === "ARTICLE"),
+    "사이드 카드가 <article> 요소");
+  ok(Array.from(doc.querySelectorAll("#side-list .sidepj")).every((el) => {
+    const anchors = Array.from(el.querySelectorAll("a"));
+    return anchors.every((a) => !a.parentElement.closest("a"));
+  }), "사이드 카드 앵커가 서로 중첩되지 않음");
+  ok(doc.querySelectorAll("#side-list .sidepj__links").length === 2,
+    "링크가 있는 카드에만 링크 묶음 렌더 (빈 래퍼 없음)");
 
   console.log();
   console.log("[연락처 · 소개 서식]");

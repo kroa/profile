@@ -223,16 +223,18 @@
                     .join("")}</div>`
                 : ""
             }
-            <div class="sidepj__links">
-              ${(sp.links || [])
-                .map(
-                  (l) => `<a class="sidepj__link" href="${esc(l.url)}" target="_blank" rel="noopener noreferrer">
-                    <span class="sidepj__link-label">${esc(l.label)}</span>
-                    <span class="sidepj__link-url">${esc(prettyUrl(l.url))}</span>
-                  </a>`
-                )
-                .join("")}
-            </div>
+            ${
+              sp.links && sp.links.length
+                ? `<div class="sidepj__links">${sp.links
+                    .map(
+                      (l) => `<a class="sidepj__link" href="${esc(l.url)}" target="_blank" rel="noopener noreferrer">
+                        <span class="sidepj__link-label">${esc(l.label)}</span>
+                        <span class="sidepj__link-url">${esc(prettyUrl(l.url))}</span>
+                      </a>`
+                    )
+                    .join("")}</div>`
+                : ""
+            }
           </div>
         </article>`
       )
