@@ -409,14 +409,6 @@ img { max-width: 100%; display: block; }
 }
 .about__photo img.is-loaded { opacity: 1; }
 .about__photo:hover img.is-loaded { transform: translateY(-4px); }
-.about__photo figcaption {
-  margin-top: 9px;
-  font-family: var(--mono);
-  font-size: 0.72rem;
-  letter-spacing: 0.08em;
-  color: var(--muted);
-  text-align: center;
-}
 /* "최초" 경험 — 한 줄에 하나씩, 골드 마커 */
 .about__firsts { display: grid; gap: 10px; margin: -4px 0 20px; }
 .about__firsts li {

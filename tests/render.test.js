@@ -186,9 +186,9 @@ function ok(cond, msg) {
   console.log("[소개 사진 · 상담 · 수상]");
   const aboutPhoto = doc.querySelector(".about__photo img");
   ok(!!aboutPhoto && (aboutPhoto.getAttribute("src") || "").includes("idcard"),
-    "소개에 사원증 사진 노출");
-  ok((aboutPhoto && aboutPhoto.getAttribute("alt") || "").trim() !== "", "사원증 사진에 alt 존재");
-  ok(doc.querySelectorAll(".about__photo").length === 1, "사원증 사진 중복 없이 1개");
+    "소개에 인물 사진 노출");
+  ok((aboutPhoto && aboutPhoto.getAttribute("alt") || "").trim() !== "", "소개 사진에 alt 존재");
+  ok(doc.querySelectorAll(".about__photo").length === 1, "소개 사진 중복 없이 1개");
   ok(!!doc.querySelector(".about__top .about__photo") && !!doc.querySelector(".about__top .about__lead"),
     "소개: 사진과 본문이 같은 2열 행에 배치");
   ok(!!doc.querySelector(".about > .about__pillars"), "강점 카드는 전체 폭 행으로 분리");
