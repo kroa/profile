@@ -250,7 +250,7 @@ function ok(cond, msg) {
   ok(sps.length === window.PROFILE.sideProjects.length && sps.length === 2,
     `사이드 프로젝트 ${sps.length}건 (기대: 2)`);
   const spText = doc.querySelector("#side-list").textContent;
-  ok(spText.includes("마법한자대모험") && spText.includes("ydmusic.pages.dev"),
+  ok(spText.includes("마법한자탐험대") && spText.includes("ydmusic.pages.dev"),
     "한자 게임 + 음악학원 사이트 모두 노출");
   ok(spText.includes("여의도실용음악학원"),
     "학원 상호가 실제 사이트(여의도실용음악학원)와 일치");
@@ -267,9 +267,9 @@ function ok(cond, msg) {
   const spLinks = Array.from(doc.querySelectorAll("#side-list .sidepj__link"));
   ok(spLinks.length === 3, `사이드 프로젝트 링크 ${spLinks.length}개 (한자 2 + 학원 1)`);
   ok(spLinks.some((a) => /magichanjaadventure\.pages\.dev/.test(a.getAttribute("href") || "")),
-    "마법한자대모험 접속 URL 연결");
+    "마법한자탐험대 접속 URL 연결");
   ok(spLinks.some((a) => /github\.com\/kroa\/magichanjaadventure/.test(a.getAttribute("href") || "")),
-    "마법한자대모험 GitHub 링크 유지");
+    "마법한자탐험대 GitHub 링크 유지");
   ok(spLinks.every((a) => (a.getAttribute("rel") || "").includes("noopener")), "사이드 링크에 rel=noopener");
   ok(doc.querySelectorAll("#side-list > a").length === 0, "사이드 카드 루트가 링크가 아님");
   ok(Array.from(doc.querySelectorAll("#side-list .sidepj")).every((el) => el.tagName === "ARTICLE"),
@@ -367,8 +367,8 @@ function ok(cond, msg) {
   ok(body.includes("셀프계산대") || body.includes("SCO"), "셀프계산대(SCO) 프로젝트 노출");
   ok(body.includes("Datadog"), "Datadog 관제 경험 노출");
   ok(doc.querySelector("#year") && doc.querySelector("#year").textContent.trim() !== "", "푸터 연도 채워짐");
-  ok(body.includes("마법한자대모험") && !!doc.querySelector('#side a[href*="magichanjaadventure"]'),
-    "사이드 프로젝트(마법한자대모험) 노출 및 링크 연결");
+  ok(body.includes("마법한자탐험대") && !!doc.querySelector('#side a[href*="magichanjaadventure"]'),
+    "사이드 프로젝트(마법한자탐험대) 노출 및 링크 연결");
   const papersText = doc.querySelector("#papers-list").textContent;
   ok(papersText.includes("P2P-SIP"), "논문 주제(P2P-SIP) 노출");
   ok(papersText.includes("대학원 졸업 논문"), "대학원 졸업 논문 표기");

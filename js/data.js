@@ -280,7 +280,7 @@ const PROFILE = {
   /* ---------- 사이드 프로젝트 ---------- */
   sideProjects: [
     {
-      title: "마법한자대모험",
+      title: "마법한자탐험대",
       desc: "아들이 요청해서 만든 한자 학습 게임",
       url: "https://magichanjaadventure.pages.dev",
       links: [
