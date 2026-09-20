@@ -209,22 +209,32 @@
     wrap.innerHTML = PROFILE.sideProjects
       .map(
         (sp, i) => `
-        <a class="sidepj reveal" data-reveal data-reveal-delay="${i}"
-           href="${esc(sp.url)}" target="_blank" rel="noopener noreferrer">
+        <article class="sidepj reveal" data-reveal data-reveal-delay="${i}">
           <span class="sidepj__glyph" aria-hidden="true">${esc(sp.glyph || "✨")}</span>
-          <span class="sidepj__body">
-            <span class="sidepj__title">${esc(sp.title)} <span class="ext" aria-hidden="true">↗</span></span>
-            <span class="sidepj__desc">${esc(sp.desc)}</span>
+          <div class="sidepj__body">
+            <h3 class="sidepj__title">
+              <a href="${esc(sp.url)}" target="_blank" rel="noopener noreferrer">${esc(sp.title)} <span class="ext" aria-hidden="true">↗</span></a>
+            </h3>
+            <p class="sidepj__desc">${esc(sp.desc)}</p>
             ${
               sp.points && sp.points.length
-                ? `<span class="sidepj__points">${sp.points
+                ? `<div class="sidepj__points">${sp.points
                     .map((pt) => `<span class="sidepj__point">${esc(pt)}</span>`)
-                    .join("")}</span>`
+                    .join("")}</div>`
                 : ""
             }
-            <span class="sidepj__repo">${esc(sp.label)}</span>
-          </span>
-        </a>`
+            <div class="sidepj__links">
+              ${(sp.links || [])
+                .map(
+                  (l) => `<a class="sidepj__link" href="${esc(l.url)}" target="_blank" rel="noopener noreferrer">
+                    <span class="sidepj__link-label">${esc(l.label)}</span>
+                    <span class="sidepj__link-url">${esc(prettyUrl(l.url))}</span>
+                  </a>`
+                )
+                .join("")}
+            </div>
+          </div>
+        </article>`
       )
       .join("");
   }

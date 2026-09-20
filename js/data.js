@@ -282,8 +282,11 @@ const PROFILE = {
     {
       title: "마법한자대모험",
       desc: "아들이 요청해서 만든 한자 학습 게임",
-      url: "https://github.com/kroa/magichanjaadventure",
-      label: "github.com/kroa/magichanjaadventure",
+      url: "https://magichanjaadventure.pages.dev",
+      links: [
+        { label: "바로가기", url: "https://magichanjaadventure.pages.dev" },
+        { label: "GitHub", url: "https://github.com/kroa/magichanjaadventure" },
+      ],
       glyph: "🀄",
     },
     {
@@ -295,7 +298,7 @@ const PROFILE = {
         "드럼 연습실 — 드럼 연주를 악보로 만들어 줌",
       ],
       url: "https://ydmusic.pages.dev/",
-      label: "ydmusic.pages.dev",
+      links: [{ label: "바로가기", url: "https://ydmusic.pages.dev/" }],
       glyph: "🎹",
     },
   ],

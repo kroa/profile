@@ -216,6 +216,15 @@ function ok(cond, msg) {
   ok(doc.querySelectorAll(".awards__shot").length === 0, "수상 카드에서 기념 사진 제외됨");
   ok(!/cloud\.jpg/.test(html + dataJs + mainJs), "cloud.jpg 참조 완전 제거");
   ok(doc.querySelectorAll(".awards .awards__group").length === 3, "수상 카드 3개");
+  const awardLink = doc.querySelector(".awards__link");
+  ok(!!awardLink && /awsbeginner/.test(awardLink.getAttribute("href") || ""),
+    "공유 대회 카드에 AWS 자격증 학습 웹앱 링크 연결");
+  ok((awardLink && awardLink.getAttribute("rel") || "").includes("noopener"), "수상 카드 링크에 rel=noopener");
+  ok(awardsTxt.includes("Flutter") && awardsTxt.includes("사내 배포"), "Flutter 웹앱 제작·사내 배포 표기");
+  const aiLeague = Array.from(doc.querySelectorAll(".awards__group"))
+    .find((g) => g.textContent.includes("AI League"));
+  ok(!!aiLeague && aiLeague.querySelectorAll(".awards__list li").length === 3,
+    "AI League 우수상 항목 3줄");
 
   console.log();
   console.log("[경력 · 회사 소개]");
@@ -252,13 +261,25 @@ function ok(cond, msg) {
     "드럼 연습실(연주→악보) 기능 표기");
   ok(spPoints.some((t) => t.includes("수강생") && t.includes("관리")),
     "수강생 이용·원장 관리 기능 표기");
+  const spLinks = Array.from(doc.querySelectorAll("#side-list .sidepj__link"));
+  ok(spLinks.length === 3, `사이드 프로젝트 링크 ${spLinks.length}개 (한자 2 + 학원 1)`);
+  ok(spLinks.some((a) => /magichanjaadventure\.pages\.dev/.test(a.getAttribute("href") || "")),
+    "마법한자대모험 접속 URL 연결");
+  ok(spLinks.some((a) => /github\.com\/kroa\/magichanjaadventure/.test(a.getAttribute("href") || "")),
+    "마법한자대모험 GitHub 링크 유지");
+  ok(spLinks.every((a) => (a.getAttribute("rel") || "").includes("noopener")), "사이드 링크에 rel=noopener");
+  ok(doc.querySelectorAll("#side-list a a").length === 0, "사이드 카드에 중첩 링크 없음");
 
   console.log();
   console.log("[연락처 · 소개 서식]");
   const cLinks = Array.from(doc.querySelectorAll(".contact__links a"));
   ok(cLinks.length === 1 && /github\.com/.test(cLinks[0].getAttribute("href")),
     `연락처 링크 ${cLinks.length}개 (GitHub만 유지)`);
-  ok(!/blog\.naver\.com|awsbeginner/.test(html), "Blog · AWS 자격증 앱 링크 완전 제거");
+  const contactHrefs = cLinks.map((a) => a.getAttribute("href") || "").join(" ");
+  ok(!/blog\.naver\.com|awsbeginner/.test(contactHrefs), "연락처에서 Blog · AWS 자격증 앱 링크 제거");
+  ok(!/blog\.naver\.com/.test(html), "Blog 링크는 사이트 전체에서 제거");
+  ok(doc.querySelector(".contact__lead").textContent.includes("AI Agent"),
+    "연락처 문구에 AI Agent 포함");
   ok(doc.querySelectorAll(".about__lead .lb").length === 4, "소개 문단 줄바꿈 4줄");
 
   console.log();
