@@ -218,7 +218,8 @@ function ok(cond, msg) {
     .find((g) => g.textContent.includes("클라우드 자격증"));
   ok(!!cloudCard && cloudCard.querySelectorAll(".awards__list li").length === 2,
     "공유 1등 카드 항목 2줄 (날짜 줄 제거)");
-  ok(awardsTxt.includes("추신수") && awardsTxt.includes("최정"), "사인볼 부상 표기");
+  ok(awardsTxt.includes("추신수") && awardsTxt.includes("최정") && awardsTxt.includes("스마트 워치"),
+    "부상(스마트워치 + 사인볼) 표기");
   ok(!/경진대회/.test(html), "구 명칭(경진대회) 완전 제거");
   ok(doc.querySelectorAll(".awards__shot").length === 0, "수상 카드에서 기념 사진 제외됨");
   ok(!/cloud\.jpg/.test(html + dataJs + mainJs), "cloud.jpg 참조 완전 제거");
