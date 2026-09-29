@@ -140,7 +140,7 @@
           </div>
           <p class="paper__title">${
             p.url
-              ? `<a href="${esc(p.url)}" target="_blank" rel="noopener noreferrer">${esc(p.title)} <span class="ext" aria-hidden="true">↗</span></a>`
+              ? `<a href="${esc(p.url)}" target="_blank" rel="noopener noreferrer">${esc(p.title)}&nbsp;<span class="ext" aria-hidden="true">↗</span></a>`
               : esc(p.title)
           }</p>
           ${
@@ -227,7 +227,7 @@
           <span class="sidepj__glyph" aria-hidden="true">${esc(sp.glyph || "✨")}</span>
           <div class="sidepj__body">
             <h3 class="sidepj__title">
-              <a href="${esc(sp.url)}" target="_blank" rel="noopener noreferrer">${esc(sp.title)} <span class="ext" aria-hidden="true">↗</span></a>
+              <a href="${esc(sp.url)}" target="_blank" rel="noopener noreferrer">${esc(sp.title)}&nbsp;<span class="ext" aria-hidden="true">↗</span></a>
             </h3>
             <p class="sidepj__desc">${esc(sp.desc)}</p>
             ${

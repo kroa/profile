@@ -719,6 +719,7 @@ img { max-width: 100%; display: block; }
 .awards__list li { position: relative; padding-left: 20px; color: var(--text-soft); font-size: 0.95rem; }
 .awards__link {
   display: inline-flex; align-items: center; flex-wrap: wrap; gap: 8px;
+  max-width: 100%;
   margin-top: 14px; padding: 6px 13px;
   border-radius: 999px;
   border: 1px solid var(--border);
@@ -727,7 +728,11 @@ img { max-width: 100%; display: block; }
 }
 .awards__link:hover { border-color: var(--gold-deep); background: var(--surface-2); }
 .awards__link-label { font-size: 0.74rem; font-weight: 700; color: var(--gold-2); }
-.awards__link-url { font-family: var(--mono); font-size: 0.72rem; color: var(--muted); }
+.awards__link-url {
+  font-family: var(--mono); font-size: 0.72rem; color: var(--muted);
+  min-width: 0; max-width: 100%;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
 .awards__link:hover .awards__link-url { color: var(--text-soft); }
 .awards__list li::before { content: "✦"; position: absolute; left: 0; color: var(--gold); font-size: 0.8rem; top: 2px; }
 .awards__list strong { color: var(--text); }
@@ -960,7 +965,12 @@ img { max-width: 100%; display: block; }
 }
 .sidepj__link:hover { border-color: var(--gold-deep); background: var(--surface-2); }
 .sidepj__link-label { font-size: 0.72rem; font-weight: 700; color: var(--gold-2); }
-.sidepj__link-url { font-family: var(--mono); font-size: 0.72rem; color: var(--muted); overflow-wrap: anywhere; }
+.sidepj__link-url {
+  font-family: var(--mono); font-size: 0.72rem; color: var(--muted);
+  /* 폭이 모자랄 때 1~2글자만 다음 줄로 떨어지는 대신 말줄임 (전체 주소는 href 에 있음) */
+  min-width: 0; max-width: 100%;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
 .sidepj__link:hover .sidepj__link-url { color: var(--text-soft); }
 
 /* ---------- Contact ---------- */
