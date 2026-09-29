@@ -265,8 +265,8 @@ function ok(cond, msg) {
   console.log();
   console.log("[사이드 프로젝트]");
   const sps = Array.from(doc.querySelectorAll("#side-list .sidepj"));
-  ok(sps.length === window.PROFILE.sideProjects.length && sps.length === 2,
-    `사이드 프로젝트 ${sps.length}건 (기대: 2)`);
+  ok(sps.length === window.PROFILE.sideProjects.length && sps.length === 6,
+    `사이드 프로젝트 ${sps.length}건 (기대: 6)`);
   const spText = doc.querySelector("#side-list").textContent;
   ok(spText.includes("마법한자탐험대") && spText.includes("ydmusic.pages.dev"),
     "한자 게임 + 음악학원 사이트 모두 노출");
@@ -283,12 +283,34 @@ function ok(cond, msg) {
   ok(spPoints.some((t) => t.includes("수강생") && t.includes("관리")),
     "수강생 이용·원장 관리 기능 표기");
   const spLinks = Array.from(doc.querySelectorAll("#side-list .sidepj__link"));
-  ok(spLinks.length === 3, `사이드 프로젝트 링크 ${spLinks.length}개 (한자 2 + 학원 1)`);
+  const expectedLinks = window.PROFILE.sideProjects.reduce((n, sp) => n + (sp.links || []).length, 0);
+  ok(spLinks.length === expectedLinks && spLinks.length === 11,
+    `사이드 프로젝트 링크 ${spLinks.length}개 (데이터 기준 ${expectedLinks}개)`);
   ok(spLinks.some((a) => /magichanjaadventure\.pages\.dev/.test(a.getAttribute("href") || "")),
     "마법한자탐험대 접속 URL 연결");
   ok(spLinks.some((a) => /github\.com\/kroa\/magichanjaadventure/.test(a.getAttribute("href") || "")),
     "마법한자탐험대 GitHub 링크 유지");
   ok(spLinks.every((a) => (a.getAttribute("rel") || "").includes("noopener")), "사이드 링크에 rel=noopener");
+  ["ParkAtZero", "줍딜", "KORU", "AI Agent 부트캠프"].forEach((name) => {
+    ok(spText.includes(name), `신규 사이드 프로젝트 노출: ${name}`);
+  });
+  [
+    ["parkatzero.pages.dev", "github.com/kroa/ParkAtZero"],
+    ["jubdeal.pages.dev", "github.com/kroa/jubdeal"],
+    ["kroa.github.io/koru_trade", "github.com/kroa/koru_trade"],
+    ["kroa.github.io/ai-agent-bootcamp", "github.com/kroa/ai-agent-bootcamp"],
+  ].forEach(([live, repo]) => {
+    const hrefs = spLinks.map((a) => a.getAttribute("href") || "");
+    ok(hrefs.some((h) => h.includes(live)) && hrefs.some((h) => h.includes(repo)),
+      `링크 쌍 연결: ${live} + ${repo}`);
+  });
+  ok(spLinks.every((a) => {
+    const shown = a.querySelector(".sidepj__link-url");
+    const href = (a.getAttribute("href") || "").replace(/^https?:\/\//, "").replace(/\/$/, "");
+    return shown && shown.textContent.trim() === href;
+  }), "사이드 링크의 표시 주소가 실제 href와 일치");
+  ok(window.PROFILE.sideProjects.every((sp) => sp.glyph && sp.glyph.trim() !== ""),
+    "모든 사이드 프로젝트에 아이콘 지정");
   ok(doc.querySelectorAll("#side-list > a").length === 0, "사이드 카드 루트가 링크가 아님");
   ok(Array.from(doc.querySelectorAll("#side-list .sidepj")).every((el) => el.tagName === "ARTICLE"),
     "사이드 카드가 <article> 요소");
@@ -296,8 +318,9 @@ function ok(cond, msg) {
     const anchors = Array.from(el.querySelectorAll("a"));
     return anchors.every((a) => !a.parentElement.closest("a"));
   }), "사이드 카드 앵커가 서로 중첩되지 않음");
-  ok(doc.querySelectorAll("#side-list .sidepj__links").length === 2,
-    "링크가 있는 카드에만 링크 묶음 렌더 (빈 래퍼 없음)");
+  const withLinks = window.PROFILE.sideProjects.filter((sp) => sp.links && sp.links.length).length;
+  ok(doc.querySelectorAll("#side-list .sidepj__links").length === withLinks,
+    `링크가 있는 카드에만 링크 묶음 렌더 (${withLinks}개, 빈 래퍼 없음)`);
 
   console.log();
   console.log("[연락처 · 소개 서식]");

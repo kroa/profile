@@ -301,6 +301,46 @@ const PROFILE = {
       links: [{ label: "바로가기", url: "https://ydmusic.pages.dev/" }],
       glyph: "🎹",
     },
+    {
+      title: "ParkAtZero · 0원 주차",
+      desc: "내가 필요해서 만든 무료 주차장 찾기 사이트 — 방문 시간에 무료인 주차장만 초록으로 보여줍니다.",
+      url: "https://parkatzero.pages.dev/",
+      links: [
+        { label: "바로가기", url: "https://parkatzero.pages.dev/" },
+        { label: "GitHub", url: "https://github.com/kroa/ParkAtZero" },
+      ],
+      glyph: "🅿️",
+    },
+    {
+      title: "줍딜",
+      desc: "내가 필요해서 만든 혜택 모음 사이트 — 무료 증정 · 100원 딜 · 쿠폰 · 캐시백 정보를 모아 공유합니다.",
+      url: "https://jubdeal.pages.dev/",
+      links: [
+        { label: "바로가기", url: "https://jubdeal.pages.dev/" },
+        { label: "GitHub", url: "https://github.com/kroa/jubdeal" },
+      ],
+      glyph: "🎁",
+    },
+    {
+      title: "KORU 진입 판정 가이드",
+      desc: "내가 필요해서 만든 한국 3배 레버리지(KORU) 진입 시점 판정 가이드",
+      url: "https://kroa.github.io/koru_trade/",
+      links: [
+        { label: "바로가기", url: "https://kroa.github.io/koru_trade/" },
+        { label: "GitHub", url: "https://github.com/kroa/koru_trade" },
+      ],
+      glyph: "📈",
+    },
+    {
+      title: "AI Agent 부트캠프",
+      desc: "내가 필요해서 만든 AI 에이전트 강의 키트 — AI 바이브코딩(개인)과 AI-DLC(팀) 강의 자료를 제공합니다.",
+      url: "https://kroa.github.io/ai-agent-bootcamp/",
+      links: [
+        { label: "바로가기", url: "https://kroa.github.io/ai-agent-bootcamp/" },
+        { label: "GitHub", url: "https://github.com/kroa/ai-agent-bootcamp" },
+      ],
+      glyph: "🎓",
+    },
   ],
 
   /* ---------- 채용 · 직무 상담 (최신순) ---------- */
