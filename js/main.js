@@ -184,21 +184,35 @@
       </article>`;
   }
 
-  /* ---------- Render: Mentoring (채용·직무 상담) ---------- */
-  function renderMentoring() {
-    const wrap = $("#mentoring");
-    if (!wrap || !window.PROFILE || !PROFILE.mentoring) return;
-    wrap.innerHTML = PROFILE.mentoring
-      .map(
-        (m, i) => `
-        <div class="activity reveal" data-reveal data-reveal-delay="${i % 2}">
-          <span class="activity__period">${esc(m.period)}</span>
+  /* ---------- Render: 활동형 목록 (세미나 / 상담 / 강의 공용) ---------- */
+  function renderActivityList(sel, items) {
+    const wrap = $(sel);
+    if (!wrap || !items || !items.length) return;
+    wrap.innerHTML = items
+      .map((a, i) => {
+        const imgs = a.imgs || [];
+        const shots = imgs.length
+          ? `<div class="activity__shots${imgs.length === 1 ? " activity__shots--single" : ""}">${imgs
+              .map((im, n) => {
+                const src = typeof im === "string" ? im : im.src;
+                const alt = (typeof im === "string" ? "" : im.alt) || `${a.title} 사진 ${n + 1}`;
+                return `<span class="activity__shot">
+                    <img src="${esc(src)}" alt="${esc(alt)}" loading="lazy" data-fallback />
+                    <span class="activity__shot-glyph" aria-hidden="true">📷</span>
+                  </span>`;
+              })
+              .join("")}</div>`
+          : "";
+        return `
+        <div class="activity${imgs.length ? " has-shots" : ""} reveal" data-reveal data-reveal-delay="${i % 2}">
+          <span class="activity__period">${esc(a.period)}</span>
           <div>
-            <div class="activity__title">${esc(m.title)}</div>
-            <div class="activity__desc">${esc(m.desc)}</div>
+            <div class="activity__title">${esc(a.title)}</div>
+            <div class="activity__desc">${esc(a.desc)}</div>
+            ${shots}
           </div>
-        </div>`
-      )
+        </div>`;
+      })
       .join("");
   }
 
@@ -260,40 +274,6 @@
           </span>
         </a>`
       )
-      .join("");
-  }
-
-  /* ---------- Render: Activities ---------- */
-  function renderActivities() {
-    const wrap = $("#activities");
-    if (!wrap || !window.PROFILE) return;
-    wrap.innerHTML = PROFILE.activities
-      .map((a, i) => {
-        const shots =
-          a.imgs && a.imgs.length
-            ? `<div class="activity__shots">${a.imgs
-                .map(
-                  (im, n) => {
-                    const src = typeof im === "string" ? im : im.src;
-                    const alt = (typeof im === "string" ? "" : im.alt) || `${a.title} 사진 ${n + 1}`;
-                    return `<span class="activity__shot">
-                    <img src="${esc(src)}" alt="${esc(alt)}" loading="lazy" data-fallback />
-                    <span class="activity__shot-glyph" aria-hidden="true">📷</span>
-                  </span>`;
-                  }
-                )
-                .join("")}</div>`
-            : "";
-        return `
-        <div class="activity${a.imgs && a.imgs.length ? " has-shots" : ""} reveal" data-reveal data-reveal-delay="${i % 2}">
-          <span class="activity__period">${esc(a.period)}</span>
-          <div>
-            <div class="activity__title">${esc(a.title)}</div>
-            <div class="activity__desc">${esc(a.desc)}</div>
-            ${shots}
-          </div>
-        </div>`;
-      })
       .join("");
   }
 
@@ -456,8 +436,9 @@
     renderCerts();
     renderPapers();
     renderEducation();
-    renderMentoring();
-    renderActivities();
+    renderActivityList("#mentoring", PROFILE.mentoring);
+    renderActivityList("#lectures", PROFILE.lectures);
+    renderActivityList("#activities", PROFILE.activities);
     renderSideProjects();
     renderVideos();
     initHeroPhoto();

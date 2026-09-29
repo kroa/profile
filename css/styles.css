@@ -756,6 +756,7 @@ img { max-width: 100%; display: block; }
   gap: 10px;
   margin-top: 16px;
 }
+.activity__shots--single { grid-template-columns: minmax(0, 340px); }
 .activity__shot {
   position: relative; display: block; overflow: hidden;
   aspect-ratio: 16 / 10;

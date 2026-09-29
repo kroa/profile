@@ -206,10 +206,23 @@ function ok(cond, msg) {
   const mentorTxt = doc.querySelector("#mentoring").textContent;
   ok(mentorTxt.includes("2022.10.12") && mentorTxt.includes("메타버스"), "메타버스 직무 상담(2022.10.12) 표기");
   ok(mentorTxt.includes("2023.03.02") && mentorTxt.includes("채용박람회"), "대한민국 채용박람회(2023.03) 표기");
+  const lectures = doc.querySelectorAll("#lectures .activity");
+  ok(lectures.length === window.PROFILE.lectures.length && lectures.length === 1,
+    `강의 ${lectures.length}건 렌더링 (기대: 1)`);
+  const lecTxt = doc.querySelector("#lectures").textContent;
+  ok(lecTxt.includes("K-뉴딜 퓨처앤드림") && lecTxt.includes("2026.09.22"),
+    "K-뉴딜 퓨처앤드림 아카데미(2026.09.22) 표기");
+  ok(lecTxt.includes("부산경영아카데미") && lecTxt.includes("IT 산업의 미래"),
+    "장소·강의 주제 표기");
+  const lecShot = doc.querySelector("#lectures .activity__shot img");
+  ok(!!lecShot && (lecShot.getAttribute("src") || "").includes("futuredream"), "강의 사진 노출");
+  ok(!!doc.querySelector("#lectures .activity__shots--single"), "사진 1장일 때 단일 모드 클래스 적용");
+
   const mSeq = Array.from(doc.querySelectorAll("#awards *"));
-  ok(mSeq.indexOf(doc.querySelector("#education")) < mSeq.indexOf(doc.querySelector("#mentoring")) &&
-     mSeq.indexOf(doc.querySelector("#mentoring")) < mSeq.indexOf(doc.querySelector("#activities")),
-    "배치: 교육수료 → 채용·직무상담 → 세미나/해외활동");
+  const at2 = (sel) => mSeq.indexOf(doc.querySelector(sel));
+  ok(at2("#education") < at2("#mentoring") && at2("#mentoring") < at2("#lectures")
+    && at2("#lectures") < at2("#activities"),
+    "배치: 교육수료 → 채용·직무상담 → 강의 → 세미나/해외활동");
 
   const awardsTxt = doc.querySelector(".awards").textContent;
   ok(awardsTxt.includes("클라우드 자격증 노하우 공유 1등") && awardsTxt.includes("21년 9월"),
